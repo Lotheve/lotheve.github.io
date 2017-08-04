@@ -4,11 +4,11 @@
 
 # Site
 title: Lotheve's
-subtitle:
-description: 勿谓湖小 天在其中
+subtitle: 勿谓湖小 天在其中
+description: 火车慢慢停下<br>这又是一个全新的地方
 author: Lotheve
-language:
-timezone:
+language: zh-Hans
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -80,3 +80,15 @@ deploy:
   type: git
   repo: https://github.com/Lotheve/lotheve.github.io.git
   branch: master
+
+# RSS订阅支持
+# plugin:
+# - hexo-generator-feed
+
+# Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: 

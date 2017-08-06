@@ -4,7 +4,7 @@
 
 # Site
 title: Lotheve's
-subtitle: 勿谓湖小 天在其中
+subtitle: 菩提本无树 明镜亦非台
 description: 火车慢慢停下<br>这又是一个全新的地方
 author: Lotheve
 language: zh-Hans
@@ -92,3 +92,7 @@ feed:
   limit: 20
   hub:
   content: 
+
+
+# disqus
+disqus_shortname: lotheves

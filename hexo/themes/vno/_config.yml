@@ -28,8 +28,9 @@ fancybox: true
 
 duoshuo_shortname: 
 
-google_analytics: UA-78918255-1
-baidu_tongji: 9cdad07c755fa23f6aced510c6760e87
+google_analytics: UA-104179898-1
+baidu_tongji: 625528118da5bf56aa02dc2a21537069
+
 favicon: /images/avatar.jpeg
 
 #mathjax

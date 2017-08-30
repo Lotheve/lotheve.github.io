@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Lotheve&#39;s</title>
-  <subtitle>勿谓湖小 天在其中</subtitle>
+  <subtitle>菩提本无树 明镜亦非台</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-04T12:17:35.000Z</updated>
+  <updated>2017-08-30T09:19:31.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,15 +16,16 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/08/04/hello-world/"/>
-    <id>http://yoursite.com/2017/08/04/hello-world/</id>
-    <published>2017-08-04T12:17:35.000Z</published>
-    <updated>2017-08-04T12:17:35.000Z</updated>
+    <title>iOS触摸事件全家桶</title>
+    <link href="http://yoursite.com/2017/08/30/iOS%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E5%85%A8%E5%AE%B6%E6%A1%B6/"/>
+    <id>http://yoursite.com/2017/08/30/iOS触摸事件全家桶/</id>
+    <published>2017-08-30T07:44:18.000Z</published>
+    <updated>2017-08-30T09:19:31.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;blockquote&gt;
+&lt;p&gt;好奇触摸事件是如何从屏幕转移到APP内的？&lt;br&gt;困惑于Cell怎么突然不能点击了？&lt;br&gt;纠结于如何实现这个奇葩响应需求？&lt;br&gt;亦或是已经被响应链、手势、target-action这一系列响应触摸事件的方式折腾到不会打Hello World？&lt;
     
     </summary>
     
@@ -41,20 +42,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;git工作流介绍及选型&quot;&gt;&lt;a href=&quot;#git工作流介绍及选型&quot; class=&quot;headerlink&quot; title=&quot;git工作流介绍及选型&quot;&gt;&lt;/a&gt;git工作流介绍及选型&lt;/h1&gt;&lt;h2 id=&quot;中心化的工作流（github-flow）&quot;&gt;&lt;a href
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>博客人生</title>
-    <link href="http://yoursite.com/2017/08/03/%E5%8D%9A%E5%AE%A2%E4%BA%BA%E7%94%9F/"/>
-    <id>http://yoursite.com/2017/08/03/博客人生/</id>
-    <published>2017-08-03T08:51:34.000Z</published>
-    <updated>2017-08-04T12:17:35.000Z</updated>
-    
-    <summary type="html">
     
     </summary>
     

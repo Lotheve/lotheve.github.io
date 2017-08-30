@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>iOS触摸事件全家桶 | Lotheve&#39;s</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="iOS触摸事件全家桶 | Lotheve&#39;s">
+    <meta name="twitter:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="iOS触摸事件全家桶 | Lotheve&#39;s">
+    <meta property="og:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    
+    <meta name="author" content="Lotheve">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar.jpeg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Lotheve&#39;s" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://yoursite.com/2017/08/30/iOS触摸事件全家桶/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Lotheve&#39;s 的主页"><img src="/images/avatar.jpg" width="80" alt="Lotheve&#39;s logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Lotheve&#39;s">Lotheve&#39;s</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">菩提本无树 明镜亦非台</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">火车慢慢停下<br>这又是一个全新的地方</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/story">时光机</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.cn/onlychacha" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/Lotheve" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-08-30T07:44:18.000Z" class="post-list__meta--date date">2017-08-30</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">iOS触摸事件全家桶</h1>
+  </header>
+
+  <section class="post">
+    <blockquote>
+<p>好奇触摸事件是如何从屏幕转移到APP内的？<br>困惑于Cell怎么突然不能点击了？<br>纠结于如何实现这个奇葩响应需求？<br>亦或是已经被响应链、手势、target-action这一系列响应触摸事件的方式折腾到不会打Hello World？<br>现在 是时候带你上分了~ （强行YY完毕）</p>
+</blockquote>
+<p>本文主要讲解iOS触摸事件的一系列机制，涉及的问题大致包括：</p>
+<ul>
+<li>触摸事件由触屏生成后如何传递到当前应用？</li>
+<li>应用接收触摸事件后如何寻找最佳响应者？实现原理？</li>
+<li>触摸事件如何沿着响应链流动？</li>
+<li>响应链、手势识别器、UIControl之间对于触摸事件的响应有着什么样的瓜葛？</li>
+</ul>
+<blockquote>
+<p>tips: iOS中的事件除了触摸事件，还包括加速计事件、远程控制事件。由于两者不在本文讨论范畴，因此文中所说事件均特指触摸事件。</p>
+</blockquote>
+<h2 id="事件的生命周期"><a href="#事件的生命周期" class="headerlink" title="事件的生命周期"></a>事件的生命周期</h2><p>当指尖触碰屏幕的那一刻，一个触摸事件就在系统中生成了。经过IPC进程间通信，事件最终被传递到了合适的应用。在应用内历经峰回路转的奇幻之旅后，最终被释放。大致经过如下图：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_1.png" alt="触摸事件流动图"></p>
+<blockquote>
+<p>图片来源：<a href="http://qingmo.me/2017/03/04/FlowOfUITouch/" target="_blank" rel="external">iOS触摸事件的流动</a></p>
+</blockquote>
+<h3 id="系统响应阶段"><a href="#系统响应阶段" class="headerlink" title="系统响应阶段"></a>系统响应阶段</h3><ol>
+<li><p>手指触碰屏幕，屏幕感应到触碰后，将事件交由IOKit处理。</p>
+</li>
+<li><p>IOKit将触摸事件封装成一个IOHIDEvent对象，并通过mach port传递给SpringBoad进程。</p>
+<blockquote>
+<p>mach port 进程端口，各进程之间通过它进行通信。<br>SpringBoad.app 是一个系统进程，可以理解为桌面系统，可以统一管理和分发系统接收到的触摸事件。</p>
+</blockquote>
+</li>
+<li><p>SpringBoard进程因接收到触摸事件，触发了主线程runloop的source1事件源的回调。<br>此时SpringBoard会根据当前桌面的状态，判断应该由谁处理此次触摸事件。因为事件发生时，你可能正在桌面上翻页，也可能正在刷微博。若是前者（即前台无APP运行），则触发SpringBoard本身主线程runloop的source0事件源的回调，将事件交由桌面系统去消耗；若是后者（即有app正在前台运行），则将触摸事件通过IPC传递给前台APP进程，接下来的事情便是APP内部对于触摸事件的响应了。</p>
+</li>
+</ol>
+<h3 id="APP响应阶段"><a href="#APP响应阶段" class="headerlink" title="APP响应阶段"></a>APP响应阶段</h3><ol>
+<li>APP进程的mach port接受到SpringBoard进程传递来的触摸事件，主线程的runloop被唤醒，触发了source1回调。</li>
+<li>source1回调又触发了一个source0回调，将接收到的IOHIDEvent对象封装成UIEvent对象，此时APP将正式开始对于触摸事件的响应。</li>
+<li>source0回调内部将触摸事件添加到UIApplication对象的事件队列中。事件出队后，UIApplication开始一个寻找最佳响应者的过程，这个过程又称hit-testing，细节将在<a href="">[寻找事件的最佳响应者]</a>一节阐述。另外，此处开始便是与我们平时开发相关的工作了。</li>
+<li>寻找到最佳响应者后，接下来的事情便是事件在响应链中的传递及响应了，关于响应链相关的内容详见<a href="">[事件的响应及在响应链中的传递]</a>一节。事实上，事件除了被响应者消耗，还能被手势识别器或是target-action模式捕捉并消耗掉。其中涉及对触摸事件的响应优先级，详见<a href="">[事件的三徒弟UIResponder、UIGestureRecognizer、UIControl]</a>一节。</li>
+<li>触摸事件历经坎坷后要么被某个响应对象捕获后释放，要么致死也没能找到能够响应的对象，最终释放。至此，这个触摸事件的使命就算终结了。runloop若没有其他事件需要处理，也将重归于眠，等待新的事件到来后唤醒。</li>
+</ol>
+<blockquote>
+<p>现在，你可以回答第一个问题了。触摸事件从触屏产生后，由IOKit将触摸事件传递给SpringBoard进程，再由SpringBoard分发给当前前台APP处理。</p>
+</blockquote>
+<h2 id="触摸、事件、响应者"><a href="#触摸、事件、响应者" class="headerlink" title="触摸、事件、响应者"></a>触摸、事件、响应者</h2><p>说了那么多，到底什么是触摸、什么是事件、什么是响应者？先简单科普一下。</p>
+<h3 id="UITouch"><a href="#UITouch" class="headerlink" title="UITouch"></a>UITouch</h3><blockquote>
+<p>源起触摸</p>
+</blockquote>
+<ul>
+<li>一个手指一次触摸屏幕，就对应生成一个UITouch对象。多个手指同时触摸，生成多个UITouch对象。</li>
+<li>多个手指先后触摸，系统会根据触摸的位置判断是否更新同一个UITouch对象。若两个手指一前一后触摸同一个位置（即双击），那么第一次触摸时生成一个UITouch对象，第二次触摸更新这个UITouch对象（UITouch对象的 <strong>tap count</strong> 属性值从1变成2）；若两个手指一前一后触摸的位置不同，将会生成两个UITouch对象，两者之间没有联系。</li>
+<li>每个UITouch对象记录了触摸的一些信息，包括触摸时间、位置、阶段、所处的视图、窗口等信息。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//触摸的各个阶段状态 </div><div class="line">//例如当手指移动时，会更新phase属性到UITouchPhaseMoved；手指离屏后，更新到UITouchPhaseEnded</div><div class="line">typedef NS_ENUM(NSInteger, UITouchPhase) &#123;</div><div class="line">    UITouchPhaseBegan,             // whenever a finger touches the surface.</div><div class="line">    UITouchPhaseMoved,             // whenever a finger moves on the surface.</div><div class="line">    UITouchPhaseStationary,        // whenever a finger is touching the surface but hasn&apos;t moved since the previous event.</div><div class="line">    UITouchPhaseEnded,             // whenever a finger leaves the surface.</div><div class="line">    UITouchPhaseCancelled,         // whenever a touch doesn&apos;t end but we need to stop tracking (e.g. putting device to face)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>手指离开屏幕一段时间后，确定该UITouch对象不会再被更新将被释放。</li>
+</ul>
+<h3 id="UIEvent"><a href="#UIEvent" class="headerlink" title="UIEvent"></a>UIEvent</h3><blockquote>
+<p>事件的真身</p>
+</blockquote>
+<ul>
+<li>触摸的目的是生成触摸事件供响应者响应，一个触摸事件对应一个UIEvent对象，其中的 <strong>type</strong> 属性标识了事件的类型（之前说过事件不只是触摸事件）。</li>
+<li>UIEvent对象中包含了触发该事件的触摸对象的集合，因为一个触摸事件可能是由多个手指同时触摸产生的。触摸对象集合通过 <strong>allTouches</strong> 属性获取。</li>
+</ul>
+<h3 id="UIResponder"><a href="#UIResponder" class="headerlink" title="UIResponder"></a>UIResponder</h3><blockquote>
+<p>一切为了满足它的野心</p>
+</blockquote>
+<p>每个响应者都是一个UIResponder对象，即所有派生自UIResponder的对象，本身都具备响应事件的能力。因此以下类的实例都是响应者：</p>
+<ul>
+<li>UIView</li>
+<li>UIViewController</li>
+<li>UIApplication</li>
+<li>AppDelegate</li>
+</ul>
+<p>响应者之所以能响应事件，因为其提供了4个处理触摸事件的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//手指触碰屏幕，触摸开始</div><div class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(nullable UIEvent *)event;</div><div class="line">//手指在屏幕上移动</div><div class="line">- (void)touchesMoved:(NSSet&lt;UITouch *&gt; *)touches withEvent:(nullable UIEvent *)event;</div><div class="line">//手指离开屏幕，触摸结束</div><div class="line">- (void)touchesEnded:(NSSet&lt;UITouch *&gt; *)touches withEvent:(nullable UIEvent *)event;</div><div class="line">//触摸结束前，某个系统事件中断了触摸，例如电话呼入</div><div class="line">- (void)touchesCancelled:(NSSet&lt;UITouch *&gt; *)touches withEvent:(nullable UIEvent *)event;</div></pre></td></tr></table></figure>
+<p>这几个方法在响应者对象接收到事件的时候调用，用于做出对事件的响应。关于响应者何时接收到事件以及事件如何沿着响应链传递将在下面章节说明。</p>
+<h2 id="寻找事件的最佳响应者（Hit-Testing）"><a href="#寻找事件的最佳响应者（Hit-Testing）" class="headerlink" title="寻找事件的最佳响应者（Hit-Testing）"></a>寻找事件的最佳响应者（Hit-Testing）</h2><p>第一节讲过APP接收到触摸事件后，会被放入当前应用的一个事件队列中（PS为什么是队列而不是栈？很好理解因为触摸事件必然是先发生先执行，切合队列FIFO的原则）。</p>
+<p>每个事件的理想宿命是被能够响应它的对象响应后释放，然而响应者诸多，事件一次只有一个，谁都想把事件抢到自己碗里来，为避免纷争，就得有一个先后顺序，也就是得有一个响应者的优先级。因此这就存在一个寻找事件最佳响应者（又称第一响应者 first responder）的过程，目的是找到一个具备最高优先级响应权的响应对象（the most appropriate responder object），这个过程叫做Hit-Testing，那个命中的最佳响应者称为hit-tested view。</p>
+<p>本节要探讨的问题是：</p>
+<ol>
+<li>应用接收到事件后，如何寻找最佳响应者？底层如何实现？</li>
+<li>寻找最佳响应者过程中事件的拦截。</li>
+</ol>
+<h3 id="事件自下而上的传递"><a href="#事件自下而上的传递" class="headerlink" title="事件自下而上的传递"></a>事件自下而上的传递</h3><p>应用接收到事件后先将其置入事件队列中以等待处理。出队后，application首先将事件传递给当前应用最后显示的窗口（UIWindow）询问其能否响应事件。若窗口能响应事件，则传递给子视图询问是否能响应，子视图若能响应则继续询问子视图。子视图询问的顺序是优先询问后添加的子视图，即子视图数组中靠后的视图。事件传递顺序如下：    </p>
+<pre><code>UIApplication ——&gt; UIWindow ——&gt; 子视图 ——&gt; ... ——&gt; 子视图
+</code></pre><p>事实上把UIWindow也看成是视图即可，这样整个传递过程就是一个递归询问子视图能否响应事件过程，且后添加的子视图优先级高（对于window而言就是后显示的window优先级高）。</p>
+<p><strong>具体流程如下：</strong></p>
+<ol>
+<li>UIApplication首先将事件传递给窗口对象（UIWindow），若存在多个窗口，则优先询问后显示的窗口。</li>
+<li>若窗口不能响应事件，则将事件传递其他窗口；若窗口能响应事件，则从后往前询问窗口的子视图。</li>
+<li>重复步骤2。即视图若不能响应，则将事件传递给上一个同级子视图；若能响应，则从后往前询问当前视图的子视图。</li>
+<li>视图若没有能响应的子视图了，则自身就是最合适的响应者。</li>
+</ol>
+<p><strong>示例：</strong></p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_2.png" alt="hit-testing 场景"></p>
+<p>视图层级如下（同一层级的视图越在下面，表示越后添加）：</p>
+<pre><code>A
+├── B
+│   └── D
+└── C
+    ├── E
+    └── F
+</code></pre><p>现在假设在E视图所处的屏幕位置触发一个触摸，应用接收到这个触摸事件事件后，先将事件传递给UIWindow，然后自下而上开始在子视图中寻找最佳响应者。事件传递的顺序如下所示：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_3.png" alt="hit-testing 过程"></p>
+<ol>
+<li>UIWindow将事件传递给其子视图A</li>
+<li>A判断自身能响应该事件，继续将事件传递给C（因为视图C比视图B后添加，因此优先传给C）。</li>
+<li>C判断自身能响应事件，继续将事件传递给F（同理F比E后添加）。</li>
+<li>F判断自身不能响应事件，C又将事件传递给E。</li>
+<li>E判断自身能响应事件，同时E已经没有子视图，因此最终E就是最佳响应者。</li>
+</ol>
+<h3 id="Hit-Testing的本质"><a href="#Hit-Testing的本质" class="headerlink" title="Hit-Testing的本质"></a>Hit-Testing的本质</h3><p>上面讲了事件在响应者之间传递的规则，视图通过判断自身能否响应事件来决定是否继续向子视图传递。那么问题来了：视图如何判断能否响应事件？以及视图如何将事件传递给子视图？</p>
+<p>首先要知道的是，以下几种状态的视图无法响应事件：</p>
+<ul>
+<li><strong>不允许交互</strong>：userInteractionEnabled = NO</li>
+<li><strong>隐藏</strong>：hidden = YES 如果父视图隐藏，那么子视图也会隐藏，隐藏的视图无法接收事件</li>
+<li><strong>透明度</strong>：alpha &lt; 0.01 如果设置一个视图的透明度&lt;0.01，会直接影响子视图的透明度。alpha：0.0~0.01为透明。</li>
+</ul>
+<p><strong>hitTest:withEvent:</strong></p>
+<p>每个UIView对象都有一个 <code>hitTest:withEvent:</code> 方法，这个方法是Hit-Testing过程中最核心的存在，其作用是询问事件在当前视图中的响应者，同时又是作为事件传递的桥梁。</p>
+<p><code>hitTest:withEvent:</code> 方法返回一个UIView对象，作为当前视图层次中的响应者。默认实现是：</p>
+<ul>
+<li>若当前视图无法响应事件，则返回nil</li>
+<li>若当前视图可以响应事件，但无子视图可以响应事件，则返回自身作为当前视图层次中的事件响应者</li>
+<li>若当前视图可以响应事件，同时有子视图可以响应，则返回子视图层次中的事件响应者</li>
+</ul>
+<p>一开始UIApplication将事件通过调用UIWindow对象的 <code>hitTest:withEvent:</code> 传递给UIWindow对象，UIWindow的 <code>hitTest:withEvent:</code> 在执行时若判断本身能响应事件，则调用子视图的 <code>hitTest:withEvent:</code> 将事件传递给子视图并询问子视图上的最佳响应者。最终UIWindow返回一个视图层次中的响应者视图给UIApplication，这个视图就是hit-testing的最佳响应者。</p>
+<p>系统对于视图能否响应事件的判断逻辑除了之前提到的3种限制状态，默认能响应的条件就是触摸点在当前视图的坐标系范围内。因此，<code>hitTest:withEvent:</code> 的默认实现就可以推测了，大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event&#123;</div><div class="line">    //3种状态无法响应事件</div><div class="line">     if (self.userInteractionEnabled == NO || self.hidden == YES ||  self.alpha &lt;= 0.01) return nil; </div><div class="line">    //触摸点若不在当前视图上则无法响应事件</div><div class="line">    if ([self pointInside:point withEvent:event] == NO) return nil; </div><div class="line">    //从后往前遍历子视图数组 </div><div class="line">    int count = (int)self.subviews.count; </div><div class="line">    for (int i = count - 1; i &gt;= 0; i--) </div><div class="line">    &#123; </div><div class="line">    	// 获取子视图</div><div class="line">    	UIView *childView = self.subviews[i]; </div><div class="line">    	// 坐标系的转换,把触摸点在当前视图上坐标转换为在子视图上的坐标</div><div class="line">    	CGPoint childP = [self convertPoint:point toView:childView]; </div><div class="line">      	//询问子视图层级中的最佳响应视图</div><div class="line">    	UIView *fitView = [childView hitTest:childP withEvent:event]; </div><div class="line">    	if (fitView) </div><div class="line">        &#123;</div><div class="line">    		//如果子视图中有更合适的就返回</div><div class="line">    		return fitView; </div><div class="line">    	&#125;</div><div class="line">    &#125; </div><div class="line">    //没有在子视图中找到更合适的响应视图，那么自身就是最合适的</div><div class="line">    return self;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>值得注意的是 <code>pointInside:withEvent:</code> 这个方法，用于判断触摸点是否在自身坐标范围内。默认实现是若在坐标范围内则返回YES，否则返回NO。</p>
+<p>现在我们在上述示例的视图层次中的每个视图类中添加下面3个方法来验证一下之前的分析（注意 <code>hitTest:withEvent:</code> 和 <code>pointInside:withEvent:</code> 方法都要调用父类的实现，否则不会按照默认的逻辑来执行Hit-Testing）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">    return [super hitTest:point withEvent:event];</div><div class="line">&#125;</div><div class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">    return [super pointInside:point withEvent:event];</div><div class="line">&#125;</div><div class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>单点触摸视图E，相关日志打印如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-[AView hitTest:withEvent:]</div><div class="line">-[AView pointInside:withEvent:]</div><div class="line">-[CView hitTest:withEvent:]</div><div class="line">-[CView pointInside:withEvent:]</div><div class="line">-[FView hitTest:withEvent:]</div><div class="line">-[FView pointInside:withEvent:]</div><div class="line">-[EView hitTest:withEvent:]</div><div class="line">-[EView pointInside:withEvent:]</div><div class="line">-[EView touchesBegan:withEvent:]</div></pre></td></tr></table></figure>
+<p>可以看到最终是视图E先对事件进行了响应，同时事件传递过程也和之前的分析一致。事实上单击后从 [AView hitTest:withEvent:] 到 [EView pointInside:withEvent:] 的过程会执行两遍，两次传的是同一个touch，区别在于touch的状态不同，第一次是begin阶段，第二次是end阶段。也就是说，<strong>应用对于事件的传递起源于触摸状态的变化</strong>。</p>
+<h3 id="Hit-Testing过程中的事件拦截（自定义事件流向）"><a href="#Hit-Testing过程中的事件拦截（自定义事件流向）" class="headerlink" title="Hit-Testing过程中的事件拦截（自定义事件流向）"></a>Hit-Testing过程中的事件拦截（自定义事件流向）</h3><p>实际开发中可能会遇到一些特殊的交互需求，需要定制视图对于事件的响应。例如下面Tabbar的这种情况，中间的原型按钮是底部Tabbar上的控件，而Tabbar是添加在控制器根视图中的。默认情况下我们点击图中红色方框中按钮的区域，会发现按钮并不会得到响应。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_4.png" alt="hit-testing过程中事件拦截场景"></p>
+<p>分析一下原因其实很容易就能明白问题所在。忽略不相关的控件，视图层次如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RootView</div><div class="line">└── TableView</div><div class="line">└── TabBar</div><div class="line">	└── CircleButton</div></pre></td></tr></table></figure>
+<p>点击红色方框区域后，生成的触摸事件首先传到UIWindow，然后传到控制器的根视图即RootView。RootView经判断可以响应触摸事件，而后将事件传给了子控件TabBar。问题就出在这里，因为触摸点不在TabBar的坐标范围内，因此TabBar无法响应该触摸事件，<code>hitTest:withEvent:</code> 直接返回了nil。而后RootView就会询问TableView是否能够响应，事实上是可以的，因此事件最终被TableView消耗。整个过程，事件根本没有传递到圆形按钮。</p>
+<p>有问题就会有解决策略。经过分析，发现原因是hit-Testing的过程中，事件在传递到TabBar的时候没能继续往CircleButton传，因为点击区域坐标不在Tabbar的坐标范围内，因此Tabbar被识别成了无法响应事件。既然如此，我们可以修改事件hit-Testing的过程，当点击红色方框区域时让事件流向原型按钮。</p>
+<p>事件传递到TabBar时，TabBar的 <code>hitTest:withEvent:</code> 被调用，但是 <code>pointInside:withEvent:</code> 会返回NO，如此一来 <code>hitTest:withEvent:</code> 返回了nil。既然如此，可以重写TabBard的 <code>pointInside:withEvent:</code> ，判断当前触摸坐标是否在子视图CircleButton的坐标范围内，若在，则返回YES，反之返回NO。这样一来点击红色区域，事件最终会传递到CircleButton，CircleButton能够响应事件，最终事件就由CircleButton响应了。同时点击红色方框以外的非TabBar区域的情况下，因为TabBar无法响应事件，会按照预期由TableView响应。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//TabBar</div><div class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    //将触摸点坐标转换到在CircleButton上的坐标</div><div class="line">    CGPoint pointTemp = [self convertPoint:point toView:_CircleButton];</div><div class="line">    //若触摸点在CricleButton上则返回YES</div><div class="line">    if ([_CircleButton pointInside:pointTemp withEvent:event]) &#123;</div><div class="line">        return YES;</div><div class="line">    &#125;</div><div class="line">    //否则返回默认的操作</div><div class="line">    return [super pointInside:point withEvent:event];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样一来，点击红色方框区域的按钮就有效了。</p>
+<blockquote>
+<p>现在第二个问题也可以回答了。另外项目中如遇到不按常理出牌的事件响应需求，相信你也应该可以应对了。</p>
+</blockquote>
+<h2 id="事件的响应及在响应链中的传递"><a href="#事件的响应及在响应链中的传递" class="headerlink" title="事件的响应及在响应链中的传递"></a>事件的响应及在响应链中的传递</h2><p>经历Hit-Testing后，UIApplication已经知道事件的最佳响应者是谁了，接下来要做的事情就是：</p>
+<ol>
+<li>将事件传递给最佳响应者响应</li>
+<li>事件沿着响应链传递</li>
+</ol>
+<h3 id="事件响应的前奏"><a href="#事件响应的前奏" class="headerlink" title="事件响应的前奏"></a>事件响应的前奏</h3><p>因为最佳响应者具有最高的事件响应优先级，因此UIApplication会先将事件传递给它供其响应。首先，UIApplication将事件通过 <code>sendEvent:</code> 传递给事件所属的window，window同样通过 <code>sendEvent:</code> 再将事件传递给hit-tested view，即最佳响应者。过程如下：</p>
+<pre><code>UIApplication ——&gt; UIWindow ——&gt; hit-tested view
+</code></pre><p>以<a href="">寻找事件的最佳响应者</a>一节中点击视图E为例，在EView的 <code>touchesBegan:withEvent:</code> 上断点查看调用栈就能看清这一过程：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_5.png" alt="touchesBegan调用栈"></p>
+<p>那么问题又来了。这个过程中，假如应用中存在多个window对象，UIApplication是怎么知道要把事件传给哪个window的？window又是怎么知道哪个视图才是最佳响应者的呢？</p>
+<p>其实简单思考一下，这两个过程都是传递事件的过程，涉及的方法都是 <code>sendEvent:</code> ，而该方法的参数（UIEvent对象）是唯一贯穿整个经过的线索，那么就可以大胆猜测必然是该触摸事件对象上绑定了这些信息。事实上之前在介绍UITouch的时候就说过touch对象保存了触摸所属的window及view，而event对象又绑定了touch对象，如此一来，是不是就说得通了。要是不信的话，那就自定义一个Window类，重写 <code>sendEvent：</code> 方法，捕捉该方法调用时参数event的状态，答案就显而易见了。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_6.png" alt="sendEvent"></p>
+<p>至于这两个属性是什么时候绑定到touch对象上的，必然是在hit-testing的过程中呗，仔细想想hit-testing干的不就是这个事儿吗~</p>
+<h3 id="事件的响应"><a href="#事件的响应" class="headerlink" title="事件的响应"></a>事件的响应</h3><p>前面介绍UIResponder的时候说过，每个响应者必定都是UIResponder对象，通过4个响应触摸事件的方法来响应事件。每个UIResponder对象默认都已经实现了这4个方法，但是默认不对事件做任何处理，单纯只是将事件沿着响应链传递。若要截获事件进行自定义的响应操作，就要重写相关的方法。例如，通过重写 <code>touchesMoved: withEvent:</code> 方法实现简单的视图拖动。</p>
+<pre><code>- (void)touchesMoved:(NSSet&lt;UITouch *&gt; *)touches withEvent:(nullable UIEvent *)event;
+</code></pre><p>每个响应触摸事件的方法都会接收两个参数，分别对应触摸对象集合和事件对象。通过监听触摸对象中保存的触摸点位置的变动，可以时时修改视图的位置。视图（UIView）作为响应者对象，本身已经实现了 <code>touchesMoved: withEvent:</code> 方法，因此要创建一个自定义视图（继承自UIView），重写该方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//MovedView</div><div class="line">//重写touchesMoved方法(触摸滑动过程中持续调用)</div><div class="line">- (void)touchesMoved:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">  	//获取触摸对象</div><div class="line">    UITouch *touch = [touches anyObject];</div><div class="line">  	//获取前一个触摸点位置</div><div class="line">    CGPoint prePoint = [touch previousLocationInView:self];</div><div class="line">  	//获取当前触摸点位置</div><div class="line">    CGPoint curPoint = [touch locationInView:self];</div><div class="line">  	//计算偏移量</div><div class="line">    CGFloat offsetX = curPoint.x - prePoint.x;</div><div class="line">    CGFloat offsetY = curPoint.y - prePoint.y;</div><div class="line">  	//相对之前的位置偏移视图</div><div class="line">    self.transform = CGAffineTransformTranslate(self.transform, offsetX, offsetY);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每个响应者都有权决定是否执行对事件的响应，只要重写相关的触摸事件方法即可。</p>
+<h3 id="事件的传递（响应链）"><a href="#事件的传递（响应链）" class="headerlink" title="事件的传递（响应链）"></a>事件的传递（响应链）</h3><p>前面一直在提最佳响应者，之所以称之为“最佳”，是因为其具备响应事件的最高优先权（响应链顶端的男人）。最佳响应者首先接收到事件，然后便拥有了对事件的绝对控制权：即它可以选择独吞这个事件，也可以将这个事件往下传递给其他响应者，这个由响应者构成的视图链就称之为响应链。</p>
+<blockquote>
+<p>需要注意的是，上一节中也说到了事件的传递，与此处所说的事件的传递有本质区别。上一节所说的事件传递的目的是为了寻找事件的最佳响应者，是自下而上的传递；而这里的事件传递目的是响应者做出对事件的响应，这个过程是自上而下的。前者为“寻找”，后者为“响应”。</p>
+</blockquote>
+<p><strong>响应者对于事件的操作方式：</strong></p>
+<p>响应者对于事件的拦截以及传递都是通过 <code>touchesBegan:withEvent:</code> 方法控制的，该方法的默认实现是将事件沿着默认的响应链往下传递。</p>
+<p>响应者对于接收到的事件有3种操作：</p>
+<ul>
+<li><p>不拦截，默认操作<br>事件会自动沿着默认的响应链往下传递</p>
+</li>
+<li><p>拦截，不再往下分发事件<br>重写 <code>touchesBegan:withEvent:</code> 进行事件处理，不调用父类的 <code>touchesBegan:withEvent:</code> </p>
+</li>
+<li><p>拦截，继续往下分发事件<br>重写 <code>touchesBegan:withEvent:</code> 进行事件处理，同时调用父类的 <code>touchesBegan:withEvent:</code> 将事件往下传递</p>
+</li>
+</ul>
+<p><strong>响应链中的事件传递规则：</strong></p>
+<p>每一个响应者对象（UIResponder对象）都有一个 <code>nextResponder</code> 方法，用于获取响应链中当前对象的下一个响应者。因此，一旦事件的最佳响应者确定了，这个事件所处的响应链就确定了。</p>
+<p>对于响应者对象，默认的 <code>nextResponder</code> 实现如下：</p>
+<ul>
+<li><p>UIView<br>若视图是控制器的根视图，则其nextResponder为控制器对象；否则，其nextResponder为父视图。</p>
+</li>
+<li><p>UIViewController<br>若控制器的视图是window的根视图，则其nextResponder为窗口对象；若控制器是从别的控制器present出来的，则其nextResponder为presenting view controller。</p>
+</li>
+<li><p>UIWindow<br>nextResponder为UIApplication对象。</p>
+</li>
+<li><p>UIApplication<br>若当前应用的app delegate是一个UIResponder对象，且不是UIView、UIViewController或app本身，则UIApplication的nextResponder为app delegate。</p>
+</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_7.png" alt="responderChain"></p>
+<p>上图是<a href="https://developer.apple.com/documentation/uikit/understanding_event_handling_responders_and_the_responder_chain?language=objc#see-also" target="_blank" rel="external">官网</a>对于响应链的示例展示，若触摸发生在UITextField上，则事件的传递顺序是：</p>
+<ul>
+<li>UITextField ——&gt; UIView ——&gt; UIView ——&gt; UIViewController ——&gt; UIWindow ——&gt; UIApplication ——&gt; UIApplicationDelegation</li>
+</ul>
+<p>图中虚线箭头是指若该UIView是作为UIViewController根视图存在的，则其nextResponder为UIViewController对象；若是直接add在UIWindow上的，则其nextResponder为UIWindow对象。</p>
+<p>可以用以下方式打印一个响应链中的每一个响应对象，在最佳响应者的 <code>touchBegin:withEvent:</code> 方法中调用即可（别忘了调用父类的方法）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (void)printResponderChain</div><div class="line">&#123;</div><div class="line">    UIResponder *responder = self;</div><div class="line">    printf(&quot;%s&quot;,[NSStringFromClass([responder class]) UTF8String]);</div><div class="line">    while (responder.nextResponder) &#123;</div><div class="line">        responder = responder.nextResponder;</div><div class="line">        printf(&quot; --&gt; %s&quot;,[NSStringFromClass([responder class]) UTF8String]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上一节原型按钮的案例为例，重写CircleButton的 <code>touchBegin:withEvent:</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event</div><div class="line">&#123;</div><div class="line">    [self printResponderChain];</div><div class="line">    [super touchesBegan:touches withEvent:event];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>点击原型按钮的任意区域，打印出的完整响应链如下：</p>
+<p><strong>CircleButton –&gt; CustomeTabBar –&gt; UIView –&gt; UIViewController –&gt; UIViewControllerWrapperView –&gt; UINavigationTransitionView –&gt; UILayoutContainerView –&gt; UINavigationController –&gt; UIWindow –&gt; UIApplication –&gt; AppDelegate</strong></p>
+<p>另外如果有需要，完全可以重写响应者的 <code>nextResponder</code> 方法来自定义响应链。</p>
+<blockquote>
+<p>现在，第三个问题也解决了。</p>
+</blockquote>
+<h2 id="事件的三徒弟UIResponder、UIGestureRecognizer、UIControl"><a href="#事件的三徒弟UIResponder、UIGestureRecognizer、UIControl" class="headerlink" title="事件的三徒弟UIResponder、UIGestureRecognizer、UIControl"></a>事件的三徒弟UIResponder、UIGestureRecognizer、UIControl</h2><p>iOS中，除了UIResponder能够响应事件，手势识别器、UIControl同样具备对事件的处理能力。当这几者同时存在于某一场景下的时候，事件又会有怎样的归宿呢？</p>
+<h3 id="抛砖引玉"><a href="#抛砖引玉" class="headerlink" title="抛砖引玉"></a>抛砖引玉</h3><p>场景界面如图：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_8.png" alt="手势冲突场景"></p>
+<p>代码不能再简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">  	//底部是一个绑定了单击手势的backView</div><div class="line">    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTapView)];</div><div class="line">    [_backView addGestureRecognizer:tap];</div><div class="line">  	//上面是一个常规的tableView</div><div class="line">    _tableMain.tableFooterView = [UIView new];</div><div class="line">  	//还有一个和tableView同级的button</div><div class="line">	[_button addTarget:self action:@selector(buttonTap) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">&#125;</div><div class="line">- (void)actionTapView&#123;</div><div class="line">    NSLog(@&quot;backview taped&quot;);</div><div class="line">&#125;</div><div class="line">- (void)buttonTap &#123;</div><div class="line">    NSLog(@&quot;button clicked!&quot;);</div><div class="line">&#125;</div><div class="line">- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath&#123;</div><div class="line">    NSLog(@&quot;cell selected!&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后我像往常一样怀揣着吃奶的自信点击了cell。what？？点不动？？点歪了吗？？再点，还是没反应！！我试着短按了一小会儿cell，依旧没反应！！我不死心，长按了一会儿，didSelectRowAtIndexPath终于调了，还算给点面子 - -。然后我又点了下面的button，没有任何问题。but what ？？</p>
+<p>为了搞清楚状况，我自定义了相关的控件类，均重写了4个响应触摸事件的方法以打印日志（每个重写的触摸事件方法都调用了父类的方法以保证事件默认传递逻辑）。</p>
+<p>观察各种情况下的日志现象：</p>
+<p><strong>现象一</strong> 快速点击cell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">backview taped</div></pre></td></tr></table></figure></p>
+<p><strong>现象二</strong> 短按cell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-[GLTableView touchesBegan:withEvent:]</div><div class="line">backview taped</div><div class="line">-[GLTableView touchesCancelled:withEvent:]</div></pre></td></tr></table></figure></p>
+<p><strong>现象三</strong> 长按cell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-[GLTableView touchesBegan:withEvent:]</div><div class="line">-[GLTableView touchesEnded:withEvent:]</div><div class="line">cell selected!</div></pre></td></tr></table></figure></p>
+<p><strong>现象四</strong> 点击button<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-[GLButton touchesBegan:withEvent:]</div><div class="line">-[GLButton touchesEnded:withEvent:]</div><div class="line">button clicked!</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>如果上面的现象依旧能让你舒心地抿上一口咖啡，那么恭喜你，本节的内容已经不适合你了。如果觉得一脸懵逼，那就继续往下看吧~ </p>
+</blockquote>
+<h3 id="二师兄—手势识别器"><a href="#二师兄—手势识别器" class="headerlink" title="二师兄—手势识别器"></a>二师兄—手势识别器</h3><p>关于手势识别器即 <code>UIGestureRecognizer</code> 本身的使用不是本文要所讨论的内容，按下不表。此处要探讨的是：<strong>手势识别器与UIResponder的联系</strong>。</p>
+<p>事实上，手势分为离散型手势（discrete gestures）和持续型手势（continuous gesture）。系统提供的离散型手势包括点按手势（<a href="apple-reference-documentation://hcmEtJ0eLp" target="_blank" rel="external">UITapGestureRecognizer</a>）和轻扫手势（<a href="apple-reference-documentation://hcKMJKvz5T" target="_blank" rel="external"><code>UISwipeGestureRecognizer</code></a>），其余均为持续型手势。</p>
+<p>两者主要区别在于状态变化过程：</p>
+<ul>
+<li><p>离散型：<br>识别成功：Possible —&gt; Recognized<br>识别失败：Possible —&gt; Failed</p>
+</li>
+<li><p>持续型：<br>完整识别：Possible —&gt; Began —&gt; [Changed] —&gt; Ended<br>不完整识别：Possible —&gt; Began —&gt; [Changed] —&gt; Cancel</p>
+</li>
+</ul>
+<p><strong>离散型手势</strong></p>
+<p>先抛开上面的场景，看一个简单的demo。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_9.png" alt="离散型手势场景"></p>
+<p>控制器的视图上add了一个View记为YellowView，并绑定了一个单击手势识别器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// LXFViewController</div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionTap)];</div><div class="line">    [self.view addGestureRecognizer:tap];</div><div class="line">&#125;</div><div class="line">- (void)actionTap&#123;</div><div class="line">    NSLog(@&quot;View Taped&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>单击YellowView，日志打印如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-[YellowView touchesBegan:withEvent:]</div><div class="line">View Taped</div><div class="line">-[YellowView touchesCancelled:withEvent:]</div></pre></td></tr></table></figure>
+<p>从日志上看出YellowView最后Cancel了对触摸事件的响应，而正常应当是触摸结束后，YellowView的 <code>touchesEnded:withEvent:</code> 的方法被调用才对。另外，期间还执行了手势识别器绑定的action 。我从<a href="https://developer.apple.com/documentation/uikit/uigesturerecognizer?language=objc" target="_blank" rel="external">官方文档</a>找到了这样的解释：</p>
+<blockquote>
+<p>A window delivers touch events to a gesture recognizer before it delivers them to the hit-tested view attached to the gesture recognizer. Generally, if a gesture recognizer analyzes the stream of touches in a multi-touch sequence and doesn’t recognize its gesture, the view receives the full complement of touches. If a gesture recognizer recognizes its gesture, the remaining touches for the view are cancelled.The usual sequence of actions in gesture recognition follows a path determined by default values of the <a href="https://developer.apple.com/documentation/uikit/uigesturerecognizer/1624218-cancelstouchesinview?language=objc" target="_blank" rel="external">cancelsTouchesInView</a>, <a href="https://developer.apple.com/documentation/uikit/uigesturerecognizer/1624234-delaystouchesbegan?language=objc" target="_blank" rel="external">delaysTouchesBegan</a>, <a href="https://developer.apple.com/documentation/uikit/uigesturerecognizer/1624209-delaystouchesended?language=objc" target="_blank" rel="external">delaysTouchesEnded</a> properties.</p>
+</blockquote>
+<p>大致理解是，Window在将事件传递给hit-tested view之前，会先将事件传递给相关的手势识别器并由手势识别器优先识别。若手势识别器成功识别了事件，就会取消hit-tested view对事件的响应；若手势识别器没能识别事件，hit-tested view才完全接手事件的响应权。</p>
+<p>一句话概括：<strong>手势识别器比UIResponder具有更高的事件响应优先级！！</strong></p>
+<p>按照这个解释，Window在将事件传递给hit-tested view即YellowView之前，先传递给了控制器根视图上的手势识别器。手势识别器成功识别了该事件，通知Application取消YellowView对事件的响应。</p>
+<p>然而看日志，却是YellowView的 <code>touchesBegan:withEvent:</code> 先调用了，既然手势识别器先响应，不应该上面的action先执行吗，这又怎么解释？事实上这个认知是错误的。手势识别器的action的调用时机（即此处的 <code>actionTap</code>）并不是手势识别器接收到事件的时机，而是手势识别器成功识别事件后的时机，即手势识别器的状态变为<a href="apple-reference-documentation://hcCvvcGh5U" target="_blank" rel="external">UIGestureRecognizerStateRecognized</a>。因此从该日志中并不能看出事件是优先传递给手势识别器的，那该<strong>怎么证明Window先将事件传递给了手势识别器？</strong></p>
+<p>要解决这个问题，只要知道手势识别器是如何接收事件的，然后在接收事件的方法中打印日志对比调用时间先后即可。说起来你可能不信，手势识别器对于事件的响应也是通过这4个熟悉的方法来实现的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event;</div><div class="line">- (void)touchesMoved:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event;</div><div class="line">- (void)touchesEnded:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event;</div><div class="line">- (void)touchesCancelled:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event;</div></pre></td></tr></table></figure>
+<p>需要注意的是，虽然手势识别器通过这几个方法来响应事件，但它并不是UIResponder的子类，相关的方法声明在 <code>UIGestureRecognizerSubclass.h</code> 中。</p>
+<p>这样一来，我们便可以自定义一个单击手势识别器的类，重写这几个方法来监听手势识别器接收事件的时机。创建一个UITapGestureRecognizer的子类，重写响应事件的方法，每个方法中调用父类的实现，并替换demo中的手势识别器。另外需要在.m文件中引入 <code>import &lt;UIKit/UIGestureRecognizerSubclass.h&gt;</code> ，因为相关方法声明在该头文件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// LXFTapGestureRecognizer (继承自UITapGestureRecognizer)</div><div class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">    [super touchesBegan:touches withEvent:event];</div><div class="line">&#125;</div><div class="line">- (void)touchesMoved:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">    [super touchesMoved:touches withEvent:event];</div><div class="line">&#125;</div><div class="line">- (void)touchesEnded:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">    [super touchesEnded:touches withEvent:event];</div><div class="line">&#125;</div><div class="line">- (void)touchesCancelled:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">    [super touchesCancelled:touches withEvent:event];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，再次点击YellowView，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">-[LXFTapGestureRecognizer touchesBegan:withEvent:]</div><div class="line">-[YellowView touchesBegan:withEvent:]</div><div class="line">-[LXFTapGestureRecognizer touchesEnded:withEvent:]</div><div class="line">View Taped</div><div class="line">-[YellowView touchesCancelled:withEvent:]</div></pre></td></tr></table></figure>
+<p>很明显，确实是手势识别器先接收到了事件。之后手势识别器成功识别了手势，执行了action，再由Application取消了YellowView对事件的响应。</p>
+<p><strong>Window怎么知道要把事件传递给哪些手势识别器？</strong></p>
+<p>之前探讨过<strong>Application怎么知道要把event传递给哪个Window</strong>，以及<strong>Window怎么知道要把event传递给哪个hit-tested view</strong>的问题，答案是这些信息都保存在event所绑定的touch对象上。手势识别器也是一样的，event绑定的touch对象上维护了一个手势识别器数组，里面的手势识别器毫无疑问是在hit-testing的过程中收集的。打个断点看一下touch上绑定的手势识别器数组：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_10.png" alt="手势识别器捕捉"></p>
+<p>Window先将事件传递给这些手势识别器，再传给hit-tested view。一旦有手势识别器成功识别了手势，Application就会取消hit-tested view对事件的响应。</p>
+<p><strong>持续型手势</strong></p>
+<p>将上面Demo中视图绑定的单击手势识别器用滑动手势识别器（UIPanGestureRecognizer）替换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(actionPan)];</div><div class="line">    [self.view addGestureRecognizer:pan];</div><div class="line">&#125;</div><div class="line">- (void)actionPan&#123;</div><div class="line">    NSLog(@&quot;View panned&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在YellowView上执行一次滑动：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_11.png" alt="持续型手势场景"></p>
+<p>日志打印如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-[YellowView touchesBegan:withEvent:]</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">View panned</div><div class="line">-[YellowView touchesCancelled:withEvent:]</div><div class="line">View panned</div><div class="line">View panned</div><div class="line">View panned</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>在一开始滑动的过程中，手势识别器处在识别手势阶段，滑动产生的连续事件既会传递给手势识别器又会传递给YellowView，因此YellowView的 <code>touchesMoved:withEvent:</code> 在开始一段时间内会持续调用；当手势识别器成功识别了该滑动手势时，手势识别器的action开始调用，同时通知Application取消YellowView对事件的响应。之后仅由滑动手势识别器接收事件并响应，YellowView不再接收事件。</p>
+<p>另外，在滑动的过程中，若手势识别器未能识别手势，则事件在触摸滑动过程中会一直传递给hit-tested view，直到触摸结束。读者可自行验证。</p>
+<p><strong>手势识别器的3个属性</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@property(nonatomic) BOOL cancelsTouchesInView;</div><div class="line">@property(nonatomic) BOOL delaysTouchesBegan;</div><div class="line">@property(nonatomic) BOOL delaysTouchesEnded;</div></pre></td></tr></table></figure>
+<p>先总结一下手势识别器与UIResponder对于事件响应的联系：</p>
+<p>当触摸发生或者触摸的状态发生变化时，Window都会传递事件寻求响应。</p>
+<ul>
+<li>Window先将绑定了触摸对象的事件传递给触摸对象上绑定的手势识别器，再发送给触摸对象对应的hit-tested view。</li>
+<li>手势识别器识别手势期间，若触摸对象的触摸状态发生变化，事件都是先发送给手势识别器再发送给hit-test view。</li>
+<li>手势识别器若成功识别了手势，则通知Application取消hit-tested view对于事件的响应，并停止向hit-tested view发送事件；</li>
+<li>若手势识别器未能识别手势，而此时触摸并未结束，则停止向手势识别器发送事件，仅向hit-test view发送事件。</li>
+<li>若手势识别器未能识别手势，且此时触摸已经结束，则向hit-tested view发送end状态的touch事件以停止对事件的响应。</li>
+</ul>
+<p><strong><em>cancelsTouchesInView</em></strong></p>
+<p>默认为YES。表示当手势识别器成功识别了手势之后，会通知Application取消响应链对事件的响应，并不再传递事件给hit-test view。若设置成NO，表示手势识别成功后不取消响应链对事件的响应，事件依旧会传递给hit-test view。</p>
+<p>demo中设置: <code>pan.cancelsTouchesInView = NO</code></p>
+<p>滑动时日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">-[YellowView touchesBegan:withEvent:]</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">View panned</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">View panned</div><div class="line">View panned</div><div class="line">-[YellowView touchesMoved:withEvent:]</div><div class="line">View panned</div><div class="line">-[YellowView touchesMoved:withEvent:]</div></pre></td></tr></table></figure>
+<p>即便滑动手势识别器识别了手势，Application也会依旧发送事件给YellowView。</p>
+<p><strong><em>delaysTouchesBegan</em></strong></p>
+<p>默认为NO。默认情况下手势识别器在识别手势期间，当触摸状态发生改变时，Application都会将事件传递给手势识别器和hit-tested view；若设置成YES，则表示手势识别器在识别手势期间，截断事件，即不会将事件发送给hit-tested view。</p>
+<p>设置 <code>pan.delaysTouchesBegan = YES</code></p>
+<p>日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">View panned</div><div class="line">View panned</div><div class="line">View panned</div><div class="line">View panned</div></pre></td></tr></table></figure>
+<p>因为滑动手势识别器在识别期间，事件不会传递给YellowView，因此期间YellowView的 <code>touchesBegan:withEvent:</code> 和 <code>touchesMoved:withEvent:</code> 都不会被调用；而后滑动手势识别器成功识别了手势，也就独吞了事件，不会再传递给YellowView。因此只打印了手势识别器成功识别手势后的action调用。</p>
+<p><strong><em>delaysTouchesEnded</em></strong></p>
+<p>默认为NO。默认情况下当手势识别器未能识别手势时，若此时触摸已经结束，则会立即通知Application发送状态为end的touch事件给hit-tested view以调用 <code>touchesEnded:withEvent:</code> 结束事件响应；若设置为YES，则会在手势识别失败时，延迟一小段时间（0.15s）再调用响应者的 <code>touchesEnded:withEvent:</code>。</p>
+<blockquote>
+<p>总结：手势识别器比响应链具有更高的事件响应优先级。</p>
+</blockquote>
+<h3 id="大师兄—UIControl"><a href="#大师兄—UIControl" class="headerlink" title="大师兄—UIControl"></a>大师兄—UIControl</h3><p>UIControl是系统提供的能够以target-action模式处理触摸事件的控件，iOS中UIButton、UISegmentedControl、UISwitch等控件都是UIControl的子类。当UIControl跟踪到触摸事件时，会向其上添加的target发送事件以执行action。值得注意的是，UIConotrol是UIView的子类，因此本身也具备UIResponder应有的身份。</p>
+<p>关于UIControl，此处介绍两点：</p>
+<ol>
+<li>target-action执行时机及过程</li>
+<li>触摸事件优先级</li>
+</ol>
+<p><strong>target-action</strong></p>
+<ul>
+<li><p>target：处理交互事件的对象</p>
+</li>
+<li><p>action：处理交互事件的方式</p>
+</li>
+</ul>
+<p>UIControl作为能够响应事件的控件，必然也需要待事件交互符合条件时才去响应，因此也会跟踪事件发生的过程。不同于UIControl以及UIGestureRecognizer通过 <code>touches</code> 系列方法跟踪，UIControl有其独特的跟踪方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(nullable UIEvent *)event;</div><div class="line">- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(nullable UIEvent *)event;</div><div class="line">- (void)endTrackingWithTouch:(nullable UITouch *)touch withEvent:(nullable UIEvent *)event;</div><div class="line">- (void)cancelTrackingWithEvent:(nullable UIEvent *)event;</div></pre></td></tr></table></figure>
+<p>乍一看，这4个方法和UIResponder的那4个方法几乎吻合，只不过UIControl只能接收单点触控，因此接收的参数是单个UITouch对象。这几个方法的职能也和UIResponder一致，用来跟踪触摸的开始、滑动、结束、取消。不过，UIControl本身也是UIResponder，因此同样有 <code>touches</code> 系列的4个方法。事实上，UIControl的 <code>Tracking</code> 系列方法是在 <code>touch</code> 系列方法内部调用的。比如 <code>beginTrackingWithTouch</code>  是在 <code>touchesBegan</code> 方法内部调用的， 因此它虽然也是UIResponder，但 <code>touches</code> 系列方法的默认实现和UIResponder本类还是有区别的。</p>
+<p>当UIControl跟踪事件的过程中，识别出事件交互符合响应条件，就会触发target-action进行响应。UIControl控件通过 <code>addTarget:action:forControlEvents:</code> 添加事件处理的target和action，当事件发生时，UIControl通知target执行对应的action。说是“通知”其实很笼统，事实上这里有个action传递的过程。当UIControl监听到需要处理的交互事件时，会调用 <code>sendAction:to:forEvent:</code> 将target、action以及event对象发送给全局应用，Application对象再通过 <code>sendAction:to:from:forEvent:</code> 向target发送action。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_12.png" alt="target-action过程"></p>
+<p>因此，可以通过重写UIControl的 <code>sendAction:to:forEvent:</code> 或 <code>sendAction:to:from:forEvent:</code> 自定义事件执行的target及action。</p>
+<p>另外，若不指定target，即 <code>addTarget:action:forControlEvents:</code> 时target传空，那么当事件发生时，Application会在响应链上从上往下寻找能响应action的对象。官方说明如下：</p>
+<blockquote>
+<p>If you specify <code>nil</code> for the target object, the control searches the responder chain for an object that defines the specified action method.</p>
+</blockquote>
+<p><strong>触摸事件优先级</strong></p>
+<p>当原本关系已经错综复杂的UIGestureRecognizer和UIResponder之间又冒出一个UIControl，又会摩擦出什么样的火花呢？</p>
+<blockquote>
+<p>In iOS 6.0 and later, default control actions prevent overlapping gesture recognizer behavior. For example, the default action for a button is a single tap. If you have a single tap gesture recognizer attached to a button’s parent view, and the user taps the button, then the button’s action method receives the touch event instead of the gesture recognizer.</p>
+</blockquote>
+<p>简单理解：UIControl会阻止父视图上的手势识别器行为，也就是UIControl处理事件的优先级比UIGestureRecognizer高，但前提是相比于父视图上的手势识别器。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_13.png" alt="UIControl测试场景"></p>
+<ul>
+<li><p>预置场景：在BlueView上添加一个button，同时给button添加一个target-action事件。</p>
+<ul>
+<li>示例一：在BlueView上添加点击手势识别器</li>
+<li>示例二：在button上添加手势识别器</li>
+</ul>
+</li>
+<li><p>操作方式：单击button</p>
+</li>
+<li><p>测试结果：示例一中，button的target-action响应了单击事件；示例二中，BlueView上的手势识别器响应了事件。过程日志打印如下：</p>
+<p>//示例一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-[CLTapGestureRecognizer touchesBegan:withEvent:]</div><div class="line">-[CLButton touchesBegan:withEvent:]</div><div class="line">-[CLButton beginTrackingWithTouch:withEvent:]</div><div class="line">-[CLTapGestureRecognizer touchesEnded:withEvent:] after called state = 5</div><div class="line">-[CLButton touchesEnded:withEvent:]</div><div class="line">-[CLButton endTrackingWithTouch:withEvent:]</div><div class="line">按钮点击</div></pre></td></tr></table></figure>
+<p>//示例二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-[CLTapGestureRecognizer touchesBegan:withEvent:]</div><div class="line">-[CLButton touchesBegan:withEvent:]</div><div class="line">-[CLButton beginTrackingWithTouch:withEvent:]</div><div class="line">-[CLTapGestureRecognizer touchesEnded:withEvent:] after called state = 3</div><div class="line">手势触发</div><div class="line">-[CLButton touchesCancelled:withEvent:]</div><div class="line">-[CLButton cancelTrackingWithEvent:]</div></pre></td></tr></table></figure>
+</li>
+<li><p>原因分析：点击button后，事件先传递给手势识别器，再传递给作为hit-tested view存在的button（UIControl本身也是UIResponder，这一过程和普通事件响应者无异）。示例一中，由于button阻止了父视图BlueView中的手势识别器的识别，导致手势识别器识别失败（状态为failed 枚举值为5），button完全接手了事件的响应权，事件最终由button响应；示例二中，button未阻止其本身绑定的手势识别器的识别，因此手势识别器先识别手势并识别成功（状态为ended 枚举值为3），而后通知Application取消响应链对事件的响应，因为 <code>touchesCancelled</code> 被调用，同时 <code>cancelTrackingWithEvent</code> 跟着调用，因此button的target-action得不到执行。</p>
+</li>
+<li><p>结论：UIControl比其<strong>父视图</strong>上的手势识别器具有更高的事件响应优先级。</p>
+</li>
+</ul>
+<blockquote>
+<p>TODO:<br>上述过程中，手势识别器在执行touchesEnded时是根据什么将状态置为ended还是failed的？即根据什么判断应当识别成功还是识别失败？</p>
+</blockquote>
+<h3 id="拨云见日"><a href="#拨云见日" class="headerlink" title="拨云见日"></a>拨云见日</h3><p>现在，把胶卷回放到本章节开头的场景。给你一杯咖啡的时间看看能不能解释得通那几个现象了，不说了泡咖啡去了…</p>
+<p>我肥来了！</p>
+<p>先看<strong><em>现象二</em></strong>，短按 cell无法响应，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-[GLTableView touchesBegan:withEvent:]</div><div class="line">backview taped</div><div class="line">-[GLTableView touchesCancelled:withEvent:]</div></pre></td></tr></table></figure>
+<p>这个日志和上面<a href="">离散型手势</a>Demo中打印的日志完全一致。短按后，BackView上的手势识别器先接收到事件，之后事件传递给hit-tested view，作为响应者链中一员的GLTableView的 <code>touchesBegan:withEvent:</code> 被调用；而后手势识别器成功识别了点击事件，action执行，同时通知Application取消响应链中的事件响应，GLTableView的 <code>touchesCancelled:withEvent:</code> 被调用。</p>
+<p>因为事件被取消了，因此Cell无法响应点击。</p>
+<p>再看<strong><em>现象三</em></strong>，长按cell能够响应，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-[GLTableView touchesBegan:withEvent:]</div><div class="line">-[GLTableView touchesEnded:withEvent:]</div><div class="line">cell selected!</div></pre></td></tr></table></figure>
+<p>长按的过程中，一开始事件同样被传递给手势识别器和hit-tested view，作为响应链中一员的GLTableView的 <code>touchesBegan:withEvent:</code> 被调用；此后在长按的过程中，手势识别器一直在识别手势，直到一定时间后手势识别失败，才将事件的响应权完全交给响应链。当触摸结束的时候，GLTableView的 <code>touchesEnded:withEvent:</code> 被调用，同时Cell响应了点击。</p>
+<p>OK，现在回到<strong><em>现象一</em></strong>。按照之前的分析，快速点击cell，讲道理不管是表现还是日志都应该和<strong><em>现象二</em></strong>一致才对。然而日志仅仅打印了手势识别器的action执行结果。分析一下原因：GLTableView的 <code>touchesBegan</code> 没有调用，说明事件没有传递给hit-tested view。那只有一种可能，就是事件被某个手势识别器拦截了。目前已知的手势识别器拦截事件的方法，就是设置 <code>delaysTouchesBegan</code> 为YES，在手势识别器未识别完成的情况下不会将事件传递给hit-tested view。然后事实上并没有进行这样的设置，那么问题可能出在别的手势识别器上。</p>
+<p>Window的 <code>sendEvent:</code> 打个断点查看event上的touch对象维护的手势识别器数组：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_14.png" alt="ScrollView延迟发送事件"></p>
+<p>捕获可疑对象：<code>UIScrollViewDelayedTouchesBeganGestureRecognizer</code> ，光看名字就觉得这货脱不了干系。从类名上猜测，这个手势识别器大概会延迟事件向响应链的传递。github上找到了该私有类的<a href="https://github.com/nst/iOS-Runtime-Headers/blob/master/Frameworks/UIKit.framework/UIScrollViewDelayedTouchesBeganGestureRecognizer.h" target="_blank" rel="external">头文件</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@interface UIScrollViewDelayedTouchesBeganGestureRecognizer : UIGestureRecognizer &#123;</div><div class="line">    UIView&lt;UIScrollViewDelayedTouchesBeganGestureRecognizerClient&gt; * _client;</div><div class="line">    struct CGPoint &#123; </div><div class="line">        float x; </div><div class="line">        float y; </div><div class="line">    &#125;  _startSceneReferenceLocation;</div><div class="line">    UIDelayedAction * _touchDelay;</div><div class="line">&#125;</div><div class="line">- (void).cxx_destruct;</div><div class="line">- (id)_clientView;</div><div class="line">- (void)_resetGestureRecognizer;</div><div class="line">- (void)clearTimer;</div><div class="line">- (void)dealloc;</div><div class="line">- (void)sendDelayedTouches;</div><div class="line">- (void)sendTouchesShouldBeginForDelayedTouches:(id)arg1;</div><div class="line">- (void)sendTouchesShouldBeginForTouches:(id)arg1 withEvent:(id)arg2;</div><div class="line">- (void)touchesBegan:(id)arg1 withEvent:(id)arg2;</div><div class="line">- (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;</div><div class="line">- (void)touchesEnded:(id)arg1 withEvent:(id)arg2;</div><div class="line">- (void)touchesMoved:(id)arg1 withEvent:(id)arg2;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>有一个_touchDelay变量，大概是用来控制延迟事件发送的。另外，方法列表里有个 <code>sendTouchesShouldBeginForDelayedTouches:</code> 方法，听名字似乎是在一段时间延迟后向响应链传递事件用的。为一探究竟，我创建了一个类hook了这个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//TouchEventHook.m</div><div class="line">+ (void)load&#123;</div><div class="line">    Class aClass = objc_getClass(&quot;UIScrollViewDelayedTouchesBeganGestureRecognizer&quot;);</div><div class="line">    SEL sel = @selector(hook_sendTouchesShouldBeginForDelayedTouches:);</div><div class="line">    Method method = class_getClassMethod([self class], sel);</div><div class="line">    class_addMethod(aClass, sel, class_getMethodImplementation([self class], sel), method_getTypeEncoding(method));</div><div class="line">    exchangeMethod(aClass, @selector(sendTouchesShouldBeginForDelayedTouches:), sel);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)hook_sendTouchesShouldBeginForDelayedTouches:(id)arg1&#123;</div><div class="line">    [self hook_sendTouchesShouldBeginForDelayedTouches:arg1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">void exchangeMethod(Class aClass, SEL oldSEL, SEL newSEL) &#123;</div><div class="line">    Method oldMethod = class_getInstanceMethod(aClass, oldSEL);</div><div class="line">    Method newMethod = class_getInstanceMethod(aClass, newSEL);</div><div class="line">    method_exchangeImplementations(oldMethod, newMethod);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>断点看一下点击cell后 <code>hook_sendTouchesShouldBeginForDelayedTouches:</code> 调用时的信息：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/touchevent_15.png" alt="延迟的本质"></p>
+<p>可以看到这个手势识别器的 _touchDelay 变量中，保存了一个计时器，以及一个长得很像延迟时间间隔的变量m_delay。现在，可以推测该手势识别器截断了事件并延迟0.15s才发送给hit-tested view。为验证猜测，我分别在Window的 <code>sendEvent:</code> ，<code>hook_sendTouchesShouldBeginForDelayedTouches:</code> 以及TableView的 <code>touchesBegan:</code> 中打印时间戳，若猜测成立，则应当前两者的调用时间相差0.15s左右，后两者的调用时间很接近。短按Cell后打印结果如下（不能快速点击，否则还没过延迟时间触摸就结束了，无法验证猜测）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-[GLWindow sendEvent:]调用时间戳 :</div><div class="line">525252194779.07ms</div><div class="line">-[TouchEventHook hook_sendTouchesShouldBeginForDelayedTouches:]调用时间戳 :</div><div class="line">525252194930.91ms</div><div class="line">-[TouchEventHook hook_sendTouchesShouldBeginForDelayedTouches:]调用时间戳 :</div><div class="line">525252194931.24ms</div><div class="line">-[GLTableView touchesBegan:withEvent:]调用时间戳 :</div><div class="line">525252194931.76ms</div></pre></td></tr></table></figure>
+<p>因为有两个 <code>UIScrollViewDelayedTouchesBeganGestureRecognizer</code>，所以 <code>hook_sendTouchesShouldBeginForDelayedTouches</code> 调了两次，两次的时间很接近。可以看到，结果完全符合猜测。</p>
+<p>这样就都解释得通了。<strong><em>现象一</em></strong>由于点击后，<code>UIScrollViewDelayedTouchesBeganGestureRecognizer</code> 拦截了事件并延迟了0.15s发送。又因为点击时间比0.15s短，在发送事件前触摸就结束了，因此事件没有传递到hit-tested view，导致TableView的 <code>touchBegin</code> 没有调用。而<strong><em>现象二</em></strong>，由于短按的时间超过了0.15s，手势识别器拦截了事件并经过0.15s后，触摸还未结束，于是将事件传递给了hit-tested view，使得TableView接收到了事件。因此现象二的日志虽然和<a href="">离散型手势</a>Demo中的日志一致，但实际上前者的hit-tested view是在触摸后延迟了约0.15s左右才接收到触摸事件的。</p>
+<p>至于<strong><em>现象四</em></strong> ，你现在应该已经觉得理所当然了才对。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>触摸发生时，系统内核生成触摸事件，先由IOKit处理封装成IOHIDEvent对象，通过IPC传递给系统进程SpringBoard，而后再传递给前台APP处理。</li>
+<li>事件传递到APP内部时被封装成开发者可见的UIEvent对象，先经过hit-testing寻找第一响应者，而后由Window对象将事件传递给hit-tested view，并开始在响应链上的传递。</li>
+<li>UIRespnder、UIGestureRecognizer、UIControl，笼统地讲，事件响应优先级依次递增。</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://www.jianshu.com/p/2e074db792ba" target="_blank" rel="external">史上最详细的iOS之事件的传递和响应机制-原理篇</a></li>
+<li><a href="https://developer.apple.com/documentation/uikit/understanding_event_handling_responders_and_the_responder_chain?language=objc#see-also" target="_blank" rel="external">Understanding Event Handling, Responders, and the Responder Chain</a></li>
+<li><a href="http://qingmo.me/2017/03/04/FlowOfUITouch/" target="_blank" rel="external">iOS触摸事件的流动</a></li>
+<li><a href="http://southpeak.github.io/2015/12/13/cocoa-uikit-uicontrol/" target="_blank" rel="external">UIKit: UIControl</a></li>
+</ol>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/08/03/git工作流介绍及选型/" title="git工作流">git工作流</a></h2>
+                <p class="excerpt">
+                
+                git工作流介绍及选型中心化的工作流（github flow）
+远程只保留一个master分支
+通过标签来标识版本发布
+开发者克隆远程仓库到本地，开发时在本地checkout出的dev分支上编辑、添加、提交后，在push前，rebase到master。这里有几个注意点：
+不要push本地分支到远程
+
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-08-03T08:52:35.000Z" class="post-list__meta--date date">2017-08-03</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2017/08/03/git工作流介绍及选型/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lotheves'; 
+      
+  var disqus_identifier = '/2017/08/30/iOS触摸事件全家桶/';
+  var disqus_title = 'iOS触摸事件全家桶';
+  var disqus_url = 'http://yoursite.com/2017/08/30/iOS触摸事件全家桶/';
+  
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          //dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+          dsq.src = 'https://a.disquscdn.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2017 - 本站使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题,
+        由<a href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-104179898-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?625528118da5bf56aa02dc2a21537069";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

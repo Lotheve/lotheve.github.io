@@ -696,7 +696,7 @@ View panned
 
 ***delaysTouchesEnded***
 
-默认为NO。默认情况下当手势识别器未能识别手势时，若此时触摸已经结束，则会立即通知Application发送状态为end的touch事件给hit-tested view以调用 ``touchesEnded:withEvent:`` 结束事件响应；若设置为YES，则会在手势识别失败时，延迟一小段时间（0.15s）再调用响应者的 ``touchesEnded:withEvent:``。
+默认为YES。当手势识别失败时，若此时触摸已经结束，会延迟一小段时间（0.15s）再调用响应者的 `touchesEnded:withEvent:`；若设置成NO，则在手势识别失败时会立即通知Application发送状态为end的touch事件给hit-tested view以调用 `touchesEnded:withEvent:`结束事件响应。
 
 > 总结：手势识别器比响应链具有更高的事件响应优先级。
 
@@ -778,6 +778,8 @@ UIControl作为能够响应事件的控件，必然也需要待事件交互符�
   ```
 
 + 原因分析：点击button后，事件先传递给手势识别器，再传递给作为hit-tested view存在的button（UIControl本身也是UIResponder，这一过程和普通事件响应者无异）。示例一中，由于button阻止了父视图BlueView中的手势识别器的识别，导致手势识别器识别失败（状态为failed 枚举值为5），button完全接手了事件的响应权，事件最终由button响应；示例二中，button未阻止其本身绑定的手势识别器的识别，因此手势识别器先识别手势并识别成功（状态为ended 枚举值为3），而后通知Application取消响应链对事件的响应，因为 ``touchesCancelled`` 被调用，同时 ``cancelTrackingWithEvent`` 跟着调用，因此button的target-action得不到执行。
+
++ 其他：经测试，若示例一中的手势识别器设置 ``cancelsTouchesInView`` 为NO，手势识别器和button都能响应事件。也就是说这种情况下，button不会阻止父视图中手势识别器的识别。
 
 + 结论：UIControl比其**父视图**上的手势识别器具有更高的事件响应优先级。
 

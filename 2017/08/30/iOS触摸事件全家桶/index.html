@@ -443,7 +443,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">View panned</div><div class="line">View panned</div><div class="line">View panned</div><div class="line">View panned</div></pre></td></tr></table></figure>
 <p>因为滑动手势识别器在识别期间，事件不会传递给YellowView，因此期间YellowView的 <code>touchesBegan:withEvent:</code> 和 <code>touchesMoved:withEvent:</code> 都不会被调用；而后滑动手势识别器成功识别了手势，也就独吞了事件，不会再传递给YellowView。因此只打印了手势识别器成功识别手势后的action调用。</p>
 <p><strong><em>delaysTouchesEnded</em></strong></p>
-<p>默认为NO。默认情况下当手势识别器未能识别手势时，若此时触摸已经结束，则会立即通知Application发送状态为end的touch事件给hit-tested view以调用 <code>touchesEnded:withEvent:</code> 结束事件响应；若设置为YES，则会在手势识别失败时，延迟一小段时间（0.15s）再调用响应者的 <code>touchesEnded:withEvent:</code>。</p>
+<p>默认为YES。当手势识别失败时，若此时触摸已经结束，会延迟一小段时间（0.15s）再调用响应者的 <code>touchesEnded:withEvent:</code>；若设置成NO，则在手势识别失败时会立即通知Application发送状态为end的touch事件给hit-tested view以调用 <code>touchesEnded:withEvent:</code>结束事件响应。</p>
 <blockquote>
 <p>总结：手势识别器比响应链具有更高的事件响应优先级。</p>
 </blockquote>

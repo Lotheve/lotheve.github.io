@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-15T01:17:14.000Z</updated>
+  <updated>2017-09-15T01:23:14.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,16 +16,15 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>iOS触摸事件全家桶</title>
-    <link href="http://yoursite.com/2017/08/30/iOS%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E5%85%A8%E5%AE%B6%E6%A1%B6/"/>
-    <id>http://yoursite.com/2017/08/30/iOS触摸事件全家桶/</id>
-    <published>2017-08-30T07:44:18.000Z</published>
-    <updated>2017-09-15T01:17:14.000Z</updated>
+    <title>ios原生集成easyAR Unity工程</title>
+    <link href="http://yoursite.com/2017/09/14/iOS%E5%8E%9F%E7%94%9F%E9%9B%86%E6%88%90easyAR_unity%E5%B7%A5%E7%A8%8B/"/>
+    <id>http://yoursite.com/2017/09/14/iOS原生集成easyAR_unity工程/</id>
+    <published>2017-09-13T16:42:13.000Z</published>
+    <updated>2017-09-15T01:23:14.000Z</updated>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;好奇触摸事件是如何从屏幕转移到APP内的？&lt;br&gt;困惑于Cell怎么突然不能点击了？&lt;br&gt;纠结于如何实现这个奇葩响应需求？&lt;br&gt;亦或是已经被响应链、手势、target-action这一系列响应触摸事件的方式折腾到不会打Hello World？&lt;
+      &lt;p&gt;最近遇到一个识别图像后显示3D模型的需求，权衡再三选择了国内的easyAR SDK。Unity建模完成后，导出相应的iOS工程，由于Unity模块在我的工程中是作为一个功能模块存在的，因此需要将导出的Unity iOS工程集成到原生工程中。集成过程稍显复杂，也躺过一些坑，此
     
     </summary>
     
@@ -33,15 +32,16 @@
   </entry>
   
   <entry>
-    <title>git工作流</title>
-    <link href="http://yoursite.com/2017/08/03/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%BB%8B%E7%BB%8D%E5%8F%8A%E9%80%89%E5%9E%8B/"/>
-    <id>http://yoursite.com/2017/08/03/git工作流介绍及选型/</id>
-    <published>2017-08-03T08:52:35.000Z</published>
-    <updated>2017-08-04T12:17:35.000Z</updated>
+    <title>iOS触摸事件全家桶</title>
+    <link href="http://yoursite.com/2017/08/30/iOS%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E5%85%A8%E5%AE%B6%E6%A1%B6/"/>
+    <id>http://yoursite.com/2017/08/30/iOS触摸事件全家桶/</id>
+    <published>2017-08-30T07:44:18.000Z</published>
+    <updated>2017-09-15T01:23:14.000Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;git工作流介绍及选型&quot;&gt;&lt;a href=&quot;#git工作流介绍及选型&quot; class=&quot;headerlink&quot; title=&quot;git工作流介绍及选型&quot;&gt;&lt;/a&gt;git工作流介绍及选型&lt;/h1&gt;&lt;h2 id=&quot;中心化的工作流（github-flow）&quot;&gt;&lt;a href
+      &lt;blockquote&gt;
+&lt;p&gt;好奇触摸事件是如何从屏幕转移到APP内的？&lt;br&gt;困惑于Cell怎么突然不能点击了？&lt;br&gt;纠结于如何实现这个奇葩响应需求？&lt;br&gt;亦或是已经被响应链、手势、target-action这一系列响应触摸事件的方式折腾到不会打Hello World？&lt;
     
     </summary>
     

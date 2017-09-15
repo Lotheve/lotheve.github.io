@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>ios原生集成easyAR Unity工程 | Lotheve&#39;s</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ios原生集成easyAR Unity工程 | Lotheve&#39;s">
+    <meta name="twitter:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ios原生集成easyAR Unity工程 | Lotheve&#39;s">
+    <meta property="og:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    
+    <meta name="author" content="Lotheve">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar.jpeg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Lotheve&#39;s" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://yoursite.com/2017/09/14/iOS原生集成easyAR_unity工程/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Lotheve&#39;s 的主页"><img src="/images/avatar.jpg" width="80" alt="Lotheve&#39;s logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Lotheve&#39;s">Lotheve&#39;s</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">菩提本无树 明镜亦非台</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">火车慢慢停下<br>这又是一个全新的地方</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/story">时光机</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.cn/onlychacha" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/Lotheve" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-09-13T16:42:13.000Z" class="post-list__meta--date date">2017-09-14</time> &#8226; <span class="post-meta__tags tags">于&nbsp; </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">ios原生集成easyAR Unity工程</h1>
+  </header>
+
+  <section class="post">
+    <p>最近遇到一个识别图像后显示3D模型的需求，权衡再三选择了国内的easyAR SDK。Unity建模完成后，导出相应的iOS工程，由于Unity模块在我的工程中是作为一个功能模块存在的，因此需要将导出的Unity iOS工程集成到原生工程中。集成过程稍显复杂，也躺过一些坑，此处做一个记录便于以铭心志。另外关于Unity建模不是本文要探讨的内容，本人也纯属Unity小白，瞎折腾一番后模型勉强符合预期，惭愧~</p>
+<blockquote>
+<p>【Unity版本】2017.1.1f1    【Xcode版本】8.3.3</p>
+</blockquote>
+<h2 id="导出Unity-iOS工程"><a href="#导出Unity-iOS工程" class="headerlink" title="导出Unity iOS工程"></a>导出Unity iOS工程</h2><p>Unity模型搭建好之后，需要导出iOS工程。相关配置如下:</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity0.png" alt="0"></p>
+<p>由于是easyAR unity工程，务必保证Bundle ID与easyAR中注册的一致。配置完成后点击build，即可导出unity iOS工程。本例中工程文件结构如下，其中 unity_general 为unity导出的iOS工程，zhb_general 为目标iOS工程。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity01.png" alt=""></p>
+<h2 id="unity文件引用"><a href="#unity文件引用" class="headerlink" title="unity文件引用"></a>unity文件引用</h2><p>在目标iOS工程里引用unity iOS工程中的文件，主要就是三个目录，Classes，Libraries，Data。这里需要注意的是，Classes和Libraries目录作为Group引用，切记不要勾选copy，而Data目录不需要参与编译，作为folder引用进来即可。本例中统一引用到Unity group下，文件结构如下：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity1.png" alt=""></p>
+<h2 id="工程配置"><a href="#工程配置" class="headerlink" title="工程配置"></a>工程配置</h2><ul>
+<li>关闭bitcode。新版的Unity已经支持Bitcode但EasyAR并不支持，不关闭无法正常编译。</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity2.png" alt=""></p>
+<ul>
+<li>修改Linking -&gt; Other Linker Flags选项，添加参数 <code>-weak_framework CoreMotion -weak-lSystem</code>。</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity3.png" alt=""></p>
+<ul>
+<li>修改头文件搜索目录</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity4.png" alt=""></p>
+<ul>
+<li>修改库搜索目录</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity5.png" alt=""></p>
+<ul>
+<li>修改LLVM - Custom Complier Flags -&gt; Other C Flags选项，添加两个参数： <code>-DINIT_SCRIPTING_BACKEND=1</code> 和 <code>-DRUNTIME_IL2CPP=1</code>。</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity6.png" alt=""></p>
+<ul>
+<li>修改LLVM - Language -&gt; C Language Dialect选项，选择<code>C99</code>。</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity7.png" alt="7"></p>
+<ul>
+<li>修改LLVM - Language - C++ -&gt; C++ Language Dialect选项，选择 <code>C++11</code>。</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity8.png" alt=""></p>
+<ul>
+<li>添加三项自定义设置<ul>
+<li>MTL_ENABLE_DEBUG_INFO -&gt; NO </li>
+<li>UNITY_RUNTIME_VERSION -&gt; 2017.1.1f1（当前你的Unity3d版本号，请自行替换）</li>
+<li>UNITY_SCRIPTING_BACKEND -&gt; il2cpp</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity9.png" alt=""></p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity10.png" alt=""></p>
+<ul>
+<li>新建一个PCH文件，并修改Precompile Prefix Header为YES，关联pch文件路径。此处新建文件名为 PrefixHeader.pch。</li>
+</ul>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity11.png" alt=""></p>
+<h2 id="添加工程依赖"><a href="#添加工程依赖" class="headerlink" title="添加工程依赖"></a>添加工程依赖</h2><p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity12.png" alt=""></p>
+<h2 id="修改代码"><a href="#修改代码" class="headerlink" title="修改代码"></a>修改代码</h2><ol>
+<li><p>找到unity工程的pch文件，完整复制内容到之前建好的PrefixHeader.pch文件中。</p>
+</li>
+<li><p>找到unity工程的main.m文件，复制其内容到新建工程的main.m文件中，将main.m修改为main.mm允许C++混编，并修改AppDelegate为工程代理类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">#include &quot;RegisterMonoModules.h&quot;</div><div class="line">#include &quot;RegisterFeatures.h&quot;</div><div class="line">#include &lt;csignal&gt;</div><div class="line"></div><div class="line">// Hack to work around iOS SDK 4.3 linker problem</div><div class="line">// we need at least one __TEXT, __const section entry in main application .o files</div><div class="line">// to get this section emitted at right time and so avoid LC_ENCRYPTION_INFO size miscalculation</div><div class="line">static const int constsection = 0;</div><div class="line"></div><div class="line">void UnityInitTrampoline();</div><div class="line"></div><div class="line">// WARNING: this MUST be c decl (NSString ctor will be called after +load, so we cant really change its value)</div><div class="line">const char* AppControllerClassName = &quot;UnityAppController&quot;;</div><div class="line"></div><div class="line">int main(int argc, char* argv[])</div><div class="line">&#123;</div><div class="line">    UnityInitStartupTime();</div><div class="line">    @autoreleasepool</div><div class="line">    &#123;</div><div class="line">        UnityInitTrampoline();</div><div class="line">        UnityInitRuntime(argc, argv);</div><div class="line">        </div><div class="line">        RegisterMonoModules();</div><div class="line">        NSLog(@&quot;-&gt; registered mono modules %p\n&quot;, &amp;constsection);</div><div class="line">        RegisterFeatures();</div><div class="line">        </div><div class="line">        // iOS terminates open sockets when an application enters background mode.</div><div class="line">        // The next write to any of such socket causes SIGPIPE signal being raised,</div><div class="line">        // even if the request has been done from scripting side. This disables the</div><div class="line">        // signal and allows Mono to throw a proper C# exception.</div><div class="line">        std::signal(SIGPIPE, SIG_IGN);</div><div class="line">        UIApplicationMain(argc, argv, nil, [NSString stringWithUTF8String:&quot;AppDelegate&quot;]);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#if TARGET_IPHONE_SIMULATOR &amp;&amp; TARGET_TVOS_SIMULATOR</div><div class="line"></div><div class="line">#include &lt;pthread.h&gt;</div><div class="line"></div><div class="line">extern &quot;C&quot; int pthread_cond_init$UNIX2003(pthread_cond_t *cond, const pthread_condattr_t *attr)</div><div class="line">&#123; return pthread_cond_init(cond, attr); &#125;</div><div class="line">extern &quot;C&quot; int pthread_cond_destroy$UNIX2003(pthread_cond_t *cond)</div><div class="line">&#123; return pthread_cond_destroy(cond); &#125;</div><div class="line">extern &quot;C&quot; int pthread_cond_wait$UNIX2003(pthread_cond_t *cond, pthread_mutex_t *mutex)</div><div class="line">&#123; return pthread_cond_wait(cond, mutex); &#125;</div><div class="line">extern &quot;C&quot; int pthread_cond_timedwait$UNIX2003(pthread_cond_t *cond, pthread_mutex_t *mutex,</div><div class="line">                                               const struct timespec *abstime)</div><div class="line">&#123; return pthread_cond_timedwait(cond, mutex, abstime); &#125;</div><div class="line"></div><div class="line">#endif // TARGET_IPHONE_SIMULATOR &amp;&amp; TARGET_TVOS_SIMULATOR</div></pre></td></tr></table></figure>
+<p>同时在Build Phases -&gt; Compier Sources 中删掉unity工程中的main.mm，只编译目标工程的main.mm。</p>
+</li>
+</ol>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity13.png" alt=""></p>
+<ol>
+<li><p>修改UnityAppController.h，将其中的内联函数<code>GetAppController()</code>修改如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line">inline UnityAppController* GetAppController()</div><div class="line">&#123;</div><div class="line">    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;</div><div class="line">    return delegate.unityController;</div><div class="line">//    return (UnityAppController*)[UIApplication sharedApplication].delegate;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建EasyARAppController.h，因为原本的EasyARAppController是没有头文件的，是通过OC运行时初始化的，为了方便在代码中初始化和使用，单独建立它的头文件，并调整一下EasyARAppController.mm文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//EasyARAppController.h </div><div class="line">#import &quot;UnityAppController.h&quot;</div><div class="line">@interface EasyARAppController : UnityAppController</div><div class="line">@end</div><div class="line"></div><div class="line">//EasyARAppController.mm</div><div class="line">#import &lt;UIKit/UIKit.h&gt;</div><div class="line">#import &quot;EasyARAppController.h&quot;</div><div class="line"></div><div class="line">extern &quot;C&quot; void ezarUnitySetGraphicsDevice(void* device, int deviceType, int eventType);</div><div class="line">extern &quot;C&quot; void ezarUnityRenderEvent(int marker);</div><div class="line"></div><div class="line">@interface EasyARAppController ()</div><div class="line">- (void)shouldAttachRenderDelegate;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation EasyARAppController</div><div class="line">- (void)shouldAttachRenderDelegate;</div><div class="line">&#123;</div><div class="line">    UnityRegisterRenderingPlugin(&amp;ezarUnitySetGraphicsDevice, &amp;ezarUnityRenderEvent);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line">IMPL_APP_CONTROLLER_SUBCLASS(EasyARAppController)</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建MyARAppController，继承自EasyARAppController，作为后续开发的交互controller。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">//MyARAppController.h</div><div class="line">#import &quot;EasyARAppController.h&quot;</div><div class="line">@interface MyARAppController : EasyARAppController</div><div class="line">@end</div><div class="line"></div><div class="line">//MyARAppController.mm</div><div class="line">#import &quot;MyARAppController.h&quot;</div><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line">#import &quot;UnityViewControllerListener.h&quot;</div><div class="line"></div><div class="line">#define BackButtonTag 10000</div><div class="line"></div><div class="line">extern &quot;C&quot; &#123;</div><div class="line">    void backToNative()&#123;</div><div class="line">        AppDelegate* delegate =  (AppDelegate *)[UIApplication sharedApplication].delegate;</div><div class="line">        [delegate hideUnityWindow];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@interface MyARAppController ()</div><div class="line">@property (nonatomic, strong) UIButton *backButton;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation MyARAppController</div><div class="line"></div><div class="line">- (instancetype)init&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewDidLoad) name:kUnityViewWillAppear object:self.rootViewController];</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)viewDidLoad&#123;</div><div class="line">    if (![self.rootViewController.view viewWithTag:BackButtonTag]) &#123;</div><div class="line">        [self.rootViewController.view addSubview:self.backButton];</div><div class="line">        [self.rootViewController.view bringSubviewToFront:self.backButton];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)actionBack&#123;</div><div class="line">    backToNative();</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIButton *)backButton&#123;</div><div class="line">    if (!_backButton) &#123;</div><div class="line">        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];</div><div class="line">        _backButton.frame = CGRectMake(10, 10, 60, 44);</div><div class="line">        _backButton.backgroundColor = [UIColor clearColor];</div><div class="line">        [_backButton setTitle:@&quot;退出&quot; forState:UIControlStateNormal];</div><div class="line">        [_backButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];</div><div class="line">        [_backButton addTarget:self action:@selector(actionBack) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">        _backButton.tag = BackButtonTag;</div><div class="line">    &#125;</div><div class="line">    return _backButton;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)dealloc&#123;</div><div class="line">    [[NSNotificationCenter defaultCenter] removeObserver:self];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+</li>
+<li><p>修改AppDelegate,将AppDelegate.m修改为AppDelegate.mm，并创建新的Unity3d入口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line">//AppDelegate.h</div><div class="line">#import &lt;UIKit/UIKit.h&gt;</div><div class="line">@class UnityAppController;</div><div class="line">@interface AppDelegate : UIResponder &lt;UIApplicationDelegate&gt;</div><div class="line">@property (strong, nonatomic) UIWindow *window;</div><div class="line">@property (strong, nonatomic) UIWindow *unityWindow;</div><div class="line">@property (strong, nonatomic) UnityAppController *unityController;</div><div class="line">-(void)showUnityWindow;</div><div class="line">-(void)hideUnityWindow;</div><div class="line">@end</div><div class="line"></div><div class="line">//AppDelegate.mm</div><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line">#import &lt;IQKeyboardManager.h&gt;</div><div class="line">#import &quot;MyARAppController.h&quot;</div><div class="line"></div><div class="line">@interface AppDelegate ()</div><div class="line">@property (nonatomic,strong) UINavigationController *navVC;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation AppDelegate</div><div class="line"></div><div class="line">-(UIWindow *)unityWindow&#123;</div><div class="line">    return UnityGetMainWindow();</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)showUnityWindow&#123;</div><div class="line">    self.unityWindow.hidden = NO;</div><div class="line">    UnitySendMessage(&quot;CameraDevice&quot;, &quot;StartCapture&quot;, &quot;&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)hideUnityWindow&#123;</div><div class="line">    self.unityWindow.hidden = YES;</div><div class="line">    UnitySendMessage(&quot;CameraDevice&quot;, &quot;StopCapture&quot;, &quot;&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</div><div class="line">    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];</div><div class="line">    self.window.backgroundColor = [UIColor whiteColor];</div><div class="line">    UIStoryboard *sb = [UIStoryboard storyboardWithName:@&quot;Main&quot; bundle:nil];</div><div class="line">    self.navVC = [sb instantiateInitialViewController];</div><div class="line">    self.window.rootViewController = self.navVC;</div><div class="line">    [self.window makeKeyAndVisible];</div><div class="line">    </div><div class="line">    self.unityController = [[MyARAppController alloc]init];</div><div class="line">    [self.unityController application:application didFinishLaunchingWithOptions:launchOptions];</div><div class="line">    [self hideUnityWindow];</div><div class="line">  </div><div class="line">    return YES;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)applicationWillResignActive:(UIApplication *)application &#123;</div><div class="line">    [self.unityController applicationWillResignActive:application];</div><div class="line">&#125;</div><div class="line">- (void)applicationDidEnterBackground:(UIApplication *)application &#123;</div><div class="line">    [self.unityController applicationDidEnterBackground:application];</div><div class="line">&#125;</div><div class="line">- (void)applicationWillEnterForeground:(UIApplication *)application &#123;</div><div class="line">    [self.unityController applicationWillEnterForeground:application];</div><div class="line">&#125;</div><div class="line">- (void)applicationDidBecomeActive:(UIApplication *)application &#123;</div><div class="line">    [self.unityController applicationDidBecomeActive:application];</div><div class="line">&#125;</div><div class="line">- (void)applicationWillTerminate:(UIApplication *)application &#123;</div><div class="line">    [self.unityController applicationWillTerminate:application];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置入口，此处以ViewController作为入口控制器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">#import &quot;AppDelegate.h&quot;</div><div class="line">@implementation ViewController</div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    UIButton * enterBtn = [UIButton buttonWithType:UIButtonTypeSystem];</div><div class="line">    enterBtn.frame = CGRectMake(0, 0, 100, 100);</div><div class="line">    enterBtn.center = self.view.center;</div><div class="line">    [enterBtn setTitle:@&quot;进入&quot; forState:UIControlStateNormal];</div><div class="line">    [enterBtn addTarget:self action:@selector(didClickEnter:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">    [self.view addSubview:enterBtn];</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)didClickEnter:(UIButton*)btn&#123;</div><div class="line">  	//唤起unity界面</div><div class="line">    AppDelegate * delegate = [UIApplication sharedApplication].delegate;</div><div class="line">    [delegate showUnityWindow];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="躺过的坑"><a href="#躺过的坑" class="headerlink" title="躺过的坑"></a>躺过的坑</h2><ol>
+<li>编译成功后，APP启动时crash：il2cpp::vm::MetadataCache::Initialize{} </li>
+</ol>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/iOSUnity/iOSUnity14.png" alt=""></p>
+<p>解决办法是在 Other C Flags选项中添加 <code>-DRUNTIME_IL2CPP=1</code> 参数。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/08/30/iOS触摸事件全家桶/" title="iOS触摸事件全家桶">iOS触摸事件全家桶</a></h2>
+                <p class="excerpt">
+                
+                
+好奇触摸事件是如何从屏幕转移到APP内的？困惑于Cell怎么突然不能点击了？纠结于如何实现这个奇葩响应需求？亦或是已经被响应链、手势、target-action这一系列响应触摸事件的方式折腾到不会打Hello World？现在 是时候带你上分了~ （强行YY完毕）
+
+本文主要讲解iOS触摸事件的一
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-08-30T07:44:18.000Z" class="post-list__meta--date date">2017-08-30</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2017/08/30/iOS触摸事件全家桶/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lotheves'; 
+      
+  var disqus_identifier = '/2017/09/14/iOS原生集成easyAR_unity工程/';
+  var disqus_title = 'ios原生集成easyAR Unity工程';
+  var disqus_url = 'http://yoursite.com/2017/09/14/iOS原生集成easyAR_unity工程/';
+  
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          //dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+          dsq.src = 'https://a.disquscdn.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2017 - 本站使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题,
+        由<a href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-104179898-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?625528118da5bf56aa02dc2a21537069";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

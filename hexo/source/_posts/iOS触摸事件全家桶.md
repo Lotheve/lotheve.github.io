@@ -62,7 +62,7 @@ tags:
 - 多个手指先后触摸，系统会根据触摸的位置判断是否更新同一个UITouch对象。若两个手指一前一后触摸同一个位置（即双击），那么第一次触摸时生成一个UITouch对象，第二次触摸更新这个UITouch对象（UITouch对象的 **tap count** 属性值从1变成2）；若两个手指一前一后触摸的位置不同，将会生成两个UITouch对象，两者之间没有联系。
 - 每个UITouch对象记录了触摸的一些信息，包括触摸时间、位置、阶段、所处的视图、窗口等信息。
 
-```objective-c
+```objectivec
 //触摸的各个阶段状态 
 //例如当手指移动时，会更新phase属性到UITouchPhaseMoved；手指离屏后，更新到UITouchPhaseEnded
 typedef NS_ENUM(NSInteger, UITouchPhase) {
@@ -181,7 +181,7 @@ typedef NS_ENUM(NSInteger, UITouchPhase) {
 
 系统对于视图能否响应事件的判断逻辑除了之前提到的3种限制状态，默认能响应的条件就是触摸点在当前视图的坐标系范围内。因此，``hitTest:withEvent:`` 的默认实现就可以推测了，大致如下：
 
-```objective-c
+```objectivec
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     //3种状态无法响应事件
      if (self.userInteractionEnabled == NO || self.hidden == YES ||  self.alpha <= 0.01) return nil; 
@@ -212,7 +212,7 @@ typedef NS_ENUM(NSInteger, UITouchPhase) {
 
 现在我们在上述示例的视图层次中的每个视图类中添加下面3个方法来验证一下之前的分析（注意 ``hitTest:withEvent:`` 和 ``pointInside:withEvent:`` 方法都要调用父类的实现，否则不会按照默认的逻辑来执行Hit-Testing）：
 
-```objective-c
+```objectivec
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     NSLog(@"%s",__func__);
     return [super hitTest:point withEvent:event];
@@ -264,7 +264,7 @@ RootView
 
 事件传递到TabBar时，TabBar的 ``hitTest:withEvent:`` 被调用，但是 ``pointInside:withEvent:`` 会返回NO，如此一来 ``hitTest:withEvent:`` 返回了nil。既然如此，可以重写TabBard的 ``pointInside:withEvent:`` ，判断当前触摸坐标是否在子视图CircleButton的坐标范围内，若在，则返回YES，反之返回NO。这样一来点击红色区域，事件最终会传递到CircleButton，CircleButton能够响应事件，最终事件就由CircleButton响应了。同时点击红色方框以外的非TabBar区域的情况下，因为TabBar无法响应事件，会按照预期由TableView响应。代码如下：
 
-```objective-c
+```objectivec
 //TabBar
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
@@ -316,7 +316,7 @@ RootView
 
 每个响应触摸事件的方法都会接收两个参数，分别对应触摸对象集合和事件对象。通过监听触摸对象中保存的触摸点位置的变动，可以时时修改视图的位置。视图（UIView）作为响应者对象，本身已经实现了 ``touchesMoved: withEvent:`` 方法，因此要创建一个自定义视图（继承自UIView），重写该方法。
 
-```objective-c
+```objectivec
 //MovedView
 //重写touchesMoved方法(触摸滑动过程中持续调用)
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -389,7 +389,7 @@ RootView
 
 可以用以下方式打印一个响应链中的每一个响应对象，在最佳响应者的 ``touchBegin:withEvent:`` 方法中调用即可（别忘了调用父类的方法）
 
-```objective-c
+```objectivec
 - (void)printResponderChain
 {
     UIResponder *responder = self;
@@ -403,7 +403,7 @@ RootView
 
 以上一节原型按钮的案例为例，重写CircleButton的 ``touchBegin:withEvent:`` 
 
-```objective-c
+```objectivec
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self printResponderChain];
@@ -431,7 +431,7 @@ iOS中，除了UIResponder能够响应事件，手势识别器、UIControl同样
 
 代码不能再简单：
 
-```objective-c
+```objectivec
 - (void)viewDidLoad {
     [super viewDidLoad];
   	//底部是一个绑定了单击手势的backView
@@ -511,7 +511,7 @@ button clicked!
 
 控制器的视图上add了一个View记为YellowView，并绑定了一个单击手势识别器。
 
-```objective-c
+```objectivec
 // LXFViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -545,7 +545,7 @@ View Taped
 
 要解决这个问题，只要知道手势识别器是如何接收事件的，然后在接收事件的方法中打印日志对比调用时间先后即可。说起来你可能不信，手势识别器对于事件的响应也是通过这4个熟悉的方法来实现的。
 
-```objective-c
+```objectivec
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
@@ -556,7 +556,7 @@ View Taped
 
 这样一来，我们便可以自定义一个单击手势识别器的类，重写这几个方法来监听手势识别器接收事件的时机。创建一个UITapGestureRecognizer的子类，重写响应事件的方法，每个方法中调用父类的实现，并替换demo中的手势识别器。另外需要在.m文件中引入 ``import <UIKit/UIGestureRecognizerSubclass.h>`` ，因为相关方法声明在该头文件中。
 
-```objective-c
+```objectivec
 // LXFTapGestureRecognizer (继承自UITapGestureRecognizer)
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSLog(@"%s",__func__);
@@ -600,7 +600,7 @@ Window先将事件传递给这些手势识别器，再传给hit-tested view。�
 
 将上面Demo中视图绑定的单击手势识别器用滑动手势识别器（UIPanGestureRecognizer）替换。
 
-```objective-c
+```objectivec
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(actionPan)];
@@ -636,7 +636,7 @@ View panned
 
 **手势识别器的3个属性**
 
-```objective-c
+```objectivec
 @property(nonatomic) BOOL cancelsTouchesInView;
 @property(nonatomic) BOOL delaysTouchesBegan;
 @property(nonatomic) BOOL delaysTouchesEnded;
@@ -717,7 +717,7 @@ UIControl是系统提供的能够以target-action模式处理触摸事件的控�
 
 UIControl作为能够响应事件的控件，必然也需要待事件交互符合条件时才去响应，因此也会跟踪事件发生的过程。不同于UIControl以及UIGestureRecognizer通过 ``touches`` 系列方法跟踪，UIControl有其独特的跟踪方式：
 
-```objective-c
+```objectivec
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(nullable UIEvent *)event;
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(nullable UIEvent *)event;
 - (void)endTrackingWithTouch:(nullable UITouch *)touch withEvent:(nullable UIEvent *)event;
@@ -823,7 +823,7 @@ Window的 ``sendEvent:`` 打个断点查看event上的touch对象维护的手势
 
 捕获可疑对象：``UIScrollViewDelayedTouchesBeganGestureRecognizer`` ，光看名字就觉得这货脱不了干系。从类名上猜测，这个手势识别器大概会延迟事件向响应链的传递。github上找到了该私有类的[头文件](https://github.com/nst/iOS-Runtime-Headers/blob/master/Frameworks/UIKit.framework/UIScrollViewDelayedTouchesBeganGestureRecognizer.h)：
 
-```objective-c
+```objectivec
 @interface UIScrollViewDelayedTouchesBeganGestureRecognizer : UIGestureRecognizer {
     UIView<UIScrollViewDelayedTouchesBeganGestureRecognizerClient> * _client;
     struct CGPoint { 
@@ -849,7 +849,7 @@ Window的 ``sendEvent:`` 打个断点查看event上的touch对象维护的手势
 
 有一个_touchDelay变量，大概是用来控制延迟事件发送的。另外，方法列表里有个 ``sendTouchesShouldBeginForDelayedTouches:`` 方法，听名字似乎是在一段时间延迟后向响应链传递事件用的。为一探究竟，我创建了一个类hook了这个方法：
 
-```objective-c
+```objectivec
 //TouchEventHook.m
 + (void)load{
     Class aClass = objc_getClass("UIScrollViewDelayedTouchesBeganGestureRecognizer");

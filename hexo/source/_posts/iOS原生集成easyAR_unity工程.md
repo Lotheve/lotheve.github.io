@@ -83,7 +83,7 @@ Unity模型搭建好之后，需要导出iOS工程。相关配置如下:
 
 2. 找到unity工程的main.m文件，复制其内容到新建工程的main.m文件中，将main.m修改为main.mm允许C++混编，并修改AppDelegate为工程代理类。
 
-   ```objective-c
+   ```objectivec
    #include "RegisterMonoModules.h"
    #include "RegisterFeatures.h"
    #include <csignal>
@@ -143,7 +143,7 @@ Unity模型搭建好之后，需要导出iOS工程。相关配置如下:
 
 3. 修改UnityAppController.h，将其中的内联函数``GetAppController()``修改如下：
 
-   ```objective-c
+   ```objectivec
    #import "AppDelegate.h"
    inline UnityAppController* GetAppController()
    {
@@ -155,7 +155,7 @@ Unity模型搭建好之后，需要导出iOS工程。相关配置如下:
 
 4. 新建EasyARAppController.h，因为原本的EasyARAppController是没有头文件的，是通过OC运行时初始化的，为了方便在代码中初始化和使用，单独建立它的头文件，并调整一下EasyARAppController.mm文件。
 
-   ```objective-c
+   ```objectivec
    //EasyARAppController.h 
    #import "UnityAppController.h"
    @interface EasyARAppController : UnityAppController
@@ -184,7 +184,7 @@ Unity模型搭建好之后，需要导出iOS工程。相关配置如下:
 
 5. 创建MyARAppController，继承自EasyARAppController，作为后续开发的交互controller。
 
-   ```objective-c
+   ```objectivec
    //MyARAppController.h
    #import "EasyARAppController.h"
    @interface MyARAppController : EasyARAppController
@@ -251,7 +251,7 @@ Unity模型搭建好之后，需要导出iOS工程。相关配置如下:
 
 6. 修改AppDelegate,将AppDelegate.m修改为AppDelegate.mm，并创建新的Unity3d入口。
 
-   ```objective-c
+   ```objectivec
    //AppDelegate.h
    #import <UIKit/UIKit.h>
    @class UnityAppController;
@@ -324,7 +324,7 @@ Unity模型搭建好之后，需要导出iOS工程。相关配置如下:
 
 7. 设置入口，此处以ViewController作为入口控制器。
 
-   ```objective-c
+   ```objectivec
    #import "ViewController.h"
    #import "AppDelegate.h"
    @implementation ViewController

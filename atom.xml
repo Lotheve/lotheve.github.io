@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-15T01:23:14.000Z</updated>
+  <updated>2017-10-10T11:32:13.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>WebViewJavascriptBridge源码剖析</title>
+    <link href="http://yoursite.com/2017/10/10/WebViewJavascriptBridge%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/"/>
+    <id>http://yoursite.com/2017/10/10/WebViewJavascriptBridge源码剖析/</id>
+    <published>2017-10-10T11:25:05.000Z</published>
+    <updated>2017-10-10T11:32:13.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于任意hybrid APP，不可避免进行native与web之间的交互。&lt;a href=&quot;https://github.com/marcuswestin/WebViewJavascriptBridge&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>ios原生集成easyAR Unity工程</title>
     <link href="http://yoursite.com/2017/09/14/iOS%E5%8E%9F%E7%94%9F%E9%9B%86%E6%88%90easyAR_unity%E5%B7%A5%E7%A8%8B/"/>
     <id>http://yoursite.com/2017/09/14/iOS原生集成easyAR_unity工程/</id>
     <published>2017-09-13T16:42:13.000Z</published>
-    <updated>2017-09-15T01:23:14.000Z</updated>
+    <updated>2017-10-10T11:32:46.000Z</updated>
     
     <summary type="html">
     
@@ -36,7 +52,7 @@
     <link href="http://yoursite.com/2017/08/30/iOS%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E5%85%A8%E5%AE%B6%E6%A1%B6/"/>
     <id>http://yoursite.com/2017/08/30/iOS触摸事件全家桶/</id>
     <published>2017-08-30T07:44:18.000Z</published>
-    <updated>2017-09-15T01:23:14.000Z</updated>
+    <updated>2017-10-10T11:33:43.000Z</updated>
     
     <summary type="html">
     

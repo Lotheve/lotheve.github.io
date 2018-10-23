@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>实践CocoaPods库的制作 | Lotheve&#39;s</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="实践CocoaPods库的制作 | Lotheve&#39;s">
+    <meta name="twitter:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="实践CocoaPods库的制作 | Lotheve&#39;s">
+    <meta property="og:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    
+    <meta name="author" content="Lotheve">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar.jpeg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Lotheve&#39;s" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/10/23/实践CocoaPods库的制作/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Lotheve&#39;s 的主页"><img src="/images/avatar.jpg" width="80" alt="Lotheve&#39;s logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Lotheve&#39;s">Lotheve&#39;s</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">菩提本无树 明镜亦非台</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">火车慢慢停下<br>这又是一个全新的地方</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/story">时光机</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.cn/onlychacha" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/Lotheve" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-10-23T06:42:38.000Z" class="post-list__meta--date date">2018-10-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/iOS/">iOS</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">实践CocoaPods库的制作</h1>
+  </header>
+
+  <section class="post">
+    <blockquote>
+<p>本篇内容基于 CocoaPods V1.6.0 实践公有库及私有库的制作</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作为一名iOSer，我们知道CocoaPods的作用是帮助我们管理和维护代码仓库。在说具体的如何制作Pod仓库之前，需要先来了解一下Pods是如何从远端拉取代码的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.cocoapods/repos</div></pre></td></tr></table></figure>
+<p> 安装了Cocoapods之后，本地会有这个路径，默认里面只有一个 <code>master</code> 目录</p>
+<pre><code>.
+├── master
+</code></pre><p>这个 <code>master</code> 目录其实是一个仓库，在该目录下执行 <code>git remote -v</code> ，就能看到该目录关联的远端仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git remote -v</div><div class="line">origin	https://github.com/CocoaPods/Specs.git (fetch)</div><div class="line">origin	https://github.com/CocoaPods/Specs.git (push)</div></pre></td></tr></table></figure>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/pods/1.png" alt=""></p>
+<p>这是CocoaPods官方用来存放公有库版本描述文件的仓库，何为代码描述文件？继续往下走，能看到 <code>master</code> 仓库下深藏玄机。</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/pods/2.png" alt=""></p>
+<p>可以看到目录下包含了数不清的各个版本的公有库的目录，每个目录下都有一个 <code>.podspec.json</code> 文件。这个文件就是所谓的描述文件，里面包含了某个版本的公有库代码的具体描述信息，包括代码源仓库的路径、版本号、作者等。当我们执行 <code>pod install</code> 需要更新代码时，就是根据该文件下的 <code>source</code> 指定的路径在拉取源代码的。</p>
+<p>我们在发布代码库时，不管是公有库还是私有库，都需要两个仓库：1.存放源代码的仓库 2.存放版本描述文件的仓库。对于公有库而言，后者就是官方的Specs仓库，因此不需要手动创建。并且每次发布公有库时，CocoaPods已经给我们提供了相关的命令来提交描述文件到Specs仓库上了。而对于私有库而言，这两个仓库则都需要我们手动创建和维护。</p>
+<h2 id="公有库"><a href="#公有库" class="headerlink" title="公有库"></a>公有库</h2><h3 id="注册CocoaPods账号"><a href="#注册CocoaPods账号" class="headerlink" title="注册CocoaPods账号"></a>注册CocoaPods账号</h3><p>要想发布公有库，需要注册CocoaPods，Pods提供了相应的注册命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk register EMAIL [YOUR_NAME]</div></pre></td></tr></table></figure>
+<ul>
+<li><code>EMAIL</code>：注册的邮箱</li>
+<li><code>YOUR_NAME</code>：注册的姓名</li>
+</ul>
+<p>执行后，CocoaPods会发送一份验证邮件到你指定的邮箱上，登陆邮箱进行验证。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[!] Please verify the session by clicking the link in the verification email that has been sent to youremail</div></pre></td></tr></table></figure>
+<p> <img src="http://oubmw34rc.bkt.clouddn.com/blog/pods/3.png" alt=""></p>
+<p>点开邮箱中的链接，页面显示如上即为注册成功，此时可在终端查看注册信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk me</div></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<pre><code>- Name:     Lotheve
+- Email:    gaofeng-7171@163.com
+- Since:    October 19th, 01:04
+- Pods:     None
+- Sessions:
+  - October 19th, 01:04 - February 24th, 2019 01:14. IP: 101.71.41.233    
+</code></pre><h3 id="创建公有仓库"><a href="#创建公有仓库" class="headerlink" title="创建公有仓库"></a>创建公有仓库</h3><p>仓库中包含以下文件：    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">├── LICENSE</div><div class="line">├── LTVMediaPicker</div><div class="line">├── LTVMediaPicker-Demo</div><div class="line">├── LTVMediaPicker.podspec</div><div class="line">└── README.md</div></pre></td></tr></table></figure>
+<ul>
+<li><code>LICENSE</code>：开源许可证</li>
+<li><code>README.md</code>：库描述</li>
+<li><code>LTVMediaPicker</code>：库源码</li>
+<li><code>LTVMediaPicker-Demo</code>：demo工程，非必须</li>
+<li><code>LTVMediaPicker.podspec</code>：库描述文件，<strong>重要！</strong></li>
+</ul>
+<h3 id="podspec描述文件创建"><a href="#podspec描述文件创建" class="headerlink" title=".podspec描述文件创建"></a>.podspec描述文件创建</h3><p>在仓库目录下执行下面命令即可生成配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod spec create LTVMediaPicker</div></pre></td></tr></table></figure>
+<p>生成的文件中包含了很多注释及默认的配置项，根据需要整理后如下保留如下配置即可：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|spec|</span></div><div class="line">  <span class="comment"># 项目名称</span></div><div class="line">  spec.name         = <span class="string">"LTVMediaPicker"</span>            </div><div class="line">  <span class="comment"># 版本号</span></div><div class="line">  spec.version      = <span class="string">"1.0.0"</span></div><div class="line">  <span class="comment"># 项目简介</span></div><div class="line">  spec.summary      = <span class="string">"An media-asset picker from photo album or camera"</span></div><div class="line">  <span class="comment"># 项目描述</span></div><div class="line">  spec.description  = <span class="string">&lt;&lt;-DESC</span></div><div class="line"><span class="string">                      LTVMediaPicker is a simple tool to pick photo or video from album or camera.</span></div><div class="line"><span class="string">                      DESC</span></div><div class="line">  <span class="comment"># 项目主页</span></div><div class="line">  spec.homepage     = <span class="string">"https://github.com/Lotheve/LTVMediaPicker"</span></div><div class="line">  <span class="comment"># 开源协议</span></div><div class="line">  spec.license      = <span class="string">"MIT"</span></div><div class="line">  <span class="comment"># 作者</span></div><div class="line">  spec.authors            = &#123; <span class="string">"Lotheve"</span> =&gt; <span class="string">"gaofeng-7171@163.com"</span> &#125;</div><div class="line">  <span class="comment"># 作者主页</span></div><div class="line">  spec.social_media_url   = <span class="string">"https://lotheve.github.io/"</span></div><div class="line">  <span class="comment"># 支持的平台及版本信息</span></div><div class="line">  spec.platform     = <span class="symbol">:ios</span>, <span class="string">"7.0"</span></div><div class="line">  <span class="comment"># 代码源地址 需使用https协议地址</span></div><div class="line">  spec.source       = &#123; <span class="symbol">:git</span> =&gt; <span class="string">"https://github.com/Lotheve/LTVMediaPicker.git"</span>, <span class="symbol">:tag</span> =&gt; <span class="string">"<span class="subst">#&#123;spec.version&#125;</span>"</span> &#125;</div><div class="line">  <span class="comment"># 源文件</span></div><div class="line">  spec.source_files  = <span class="string">"LTVMediaPicker/*.&#123;h,m&#125;"</span></div><div class="line">  <span class="comment"># 需要链接的系统库</span></div><div class="line">  spec.frameworks = <span class="string">'Foundation'</span>, <span class="string">'UIKit'</span></div><div class="line">  <span class="comment"># 是否需要ARC支持</span></div><div class="line">  spec.requires_arc = <span class="literal">true</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>方便起见也可以在官方提供的<a href="https://guides.cocoapods.org/syntax/podspec.html" target="_blank" rel="external">配置示例</a>上进行修改。</p>
+<h3 id="校验-podspec文件格式"><a href="#校验-podspec文件格式" class="headerlink" title="校验.podspec文件格式"></a>校验.podspec文件格式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod lib lint</div></pre></td></tr></table></figure>
+<p>验证通过会提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-&gt; LTVMediaPicker (1.0.0)</div><div class="line">LTVMediaPicker passed validation.</div></pre></td></tr></table></figure>
+<p>若验证失败也会给出相应的提示，根据提示修改即可。</p>
+<h3 id="仓库提交"><a href="#仓库提交" class="headerlink" title="仓库提交"></a>仓库提交</h3><p>.podspec验证成功后，即可将仓库提交到远程了，同时需要给提交节点打上标签。标签用于稳定存储版本，要与当前配置文件中的 <code>s.version</code> 版本号一致，设置为 <code>1.0.0</code> 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git push</div><div class="line">$ git tag -a 1.0.0 -m <span class="string">'1.0.0版本'</span></div><div class="line">$ git push origin --tags</div></pre></td></tr></table></figure>
+<h3 id="仓库发布"><a href="#仓库发布" class="headerlink" title="仓库发布"></a>仓库发布</h3><p>现在，只需将 <code>.podspec</code> 发布到公共Specs仓库中，即可完成仓库的发布。在仓库目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod trunk push LTVMediaPicker.podspec</div></pre></td></tr></table></figure>
+<p>若提示 <code>You need to register a session first.</code> ，是因为未注册CocoaPods账号，需要先注册。</p>
+<p>这个过程做了如下操作：</p>
+<ul>
+<li>更新CocoaPods的本地Specs仓库（这个过程可能等待时间较久）</li>
+<li>将 <code>.podspec</code> 文件转换为 JSON 格式</li>
+<li>将本地版本库的修改推送远程Specs仓库</li>
+</ul>
+<p>发布成功后，终端会给出如下信息：</p>
+<pre><code>--------------------------------------------------------------------
+ 🎉  Congrats
+ 🚀  LTVMediaPicker (1.0.0) successfully published
+ 📅  October 19th, 01:26
+ 🌎  https://cocoapods.org/pods/LTVMediaPicker
+👍  Tell your friends!
+--------------------------------------------------------------------
+</code></pre><p>现在，打开 <a href="https://cocoapods.org/pods/LTVMediaPicker" target="_blank" rel="external">https://cocoapods.org/pods/LTVMediaPicker</a> 就能看到发布的库了！</p>
+<h3 id="仓库使用"><a href="#仓库使用" class="headerlink" title="仓库使用"></a>仓库使用</h3><p>pod库发布后，若执行 <code>pod search LTVMediaPicker</code> 搜索不到结果，提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[!] Unable to find a pod with name, author, summary, or description matching `LTVMediaPicker`</div></pre></td></tr></table></figure>
+<p>则需要清楚一下本地搜索索引缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pod setup</div><div class="line">$ rm ~/Library/Caches/CocoaPods/search_index.json</div></pre></td></tr></table></figure>
+<p>然后再执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod search LTVMediaPicker</div></pre></td></tr></table></figure>
+<p>搜索结果如下：</p>
+<pre><code>-&gt; LTVMediaPicker (1.0.0)
+   An media-asset picker from photo album or camera
+   pod &apos;LTVMediaPicker&apos;, &apos;~&gt; 1.0.0&apos;
+   - Homepage: https://github.com/Lotheve/LTVMediaPicker
+   - Source:   https://github.com/Lotheve/LTVMediaPicker.git
+   - Versions: 1.0.0 [master repo]
+</code></pre><p>然后就可以install了。</p>
+<h3 id="仓库维护"><a href="#仓库维护" class="headerlink" title="仓库维护"></a>仓库维护</h3><p>当公有库代码更新后，需要发布迭代版本，步骤很简单，只需：</p>
+<ol>
+<li>更新 <code>LTVMediaPicker.podspec</code> 中的仓库版本号</li>
+<li>更新代码并推送更新到远程，同时打上版本号标签</li>
+<li>执行 <code>pod trunk push LTVMediaPicker.podspec</code> </li>
+</ol>
+<p>现在我对LTVMediaPicker做一点小小的修改，代码不更新，仅是将库支持的系统最低版本修改为 <code>iOS8.0</code> </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spec.platform     = <span class="symbol">:ios</span>, <span class="string">"8.0"</span></div></pre></td></tr></table></figure>
+<p>修改后按上述步骤操作，发布 <code>1.0.1</code> 版本。</p>
+<p>发布后再执行 <code>pod search LTVMediaPicker</code> ，搜索结果如下：</p>
+<pre><code>-&gt; LTVMediaPicker (1.0.1)
+   An media-asset picker from photo album or camera
+   pod &apos;LTVMediaPicker&apos;, &apos;~&gt; 1.0.1&apos;
+   - Homepage: https://github.com/Lotheve/LTVMediaPicker
+   - Source:   https://github.com/Lotheve/LTVMediaPicker.git
+   - Versions: 1.0.1, 1.0.0 [master repo]
+</code></pre><p>可以看到 <code>1.0.1</code> 版本已经成功发布了，或者执行 <code>pod trunk info LTVMediaPicker</code> ，也能看到对应的库信息：</p>
+<pre><code>LTVMediaPicker
+- Versions:
+  - 1.0.0 (2018-10-19 07:26:52 UTC)
+  - 1.0.1 (2018-10-19 11:16:15 UTC)
+- Owners:
+  - Lotheve &lt;gaofeng-7171@163.com&gt;
+</code></pre><h3 id="仓库版本删除"><a href="#仓库版本删除" class="headerlink" title="仓库版本删除"></a>仓库版本删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod trunk deprecate [POD REP NAME]</div></pre></td></tr></table></figure>
+<p>该命令可以使整个库过期。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod trunk delete [POD REP NAME] [VERSION]</div></pre></td></tr></table></figure>
+<p>该命令用来删除已发布的指定版本的仓库，并且不可回退。一旦删除，该版本将无法再创建。</p>
+<h2 id="私有库"><a href="#私有库" class="headerlink" title="私有库"></a>私有库</h2><h3 id="创建私有描述文件仓库"><a href="#创建私有描述文件仓库" class="headerlink" title="创建私有描述文件仓库"></a>创建私有描述文件仓库</h3><p>文初提过，私有库的制作需要开辟两个仓库，一个是用来存放代码的，另一个是用来存放版本描述文件的（对于公有库而言，这个仓库就是官方的Specs仓库，对应本地 <code>~/.CocoaPods/repos/</code> 目录下的 <code>master</code> 仓库）。既然是私有库，就要选择能够创建私有库的代码托管平台，我这里选择Coding作为实践（提供免费私有仓库）。github自然也是可以创建私有仓库的，只不过要收费。创建存放代码描述文件的私有仓库：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/pods/4.png" alt=""></p>
+<p>创建成功之后，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod repo add PrivateRepo git@git.coding.net:lotheve/LTVRepo.git</div></pre></td></tr></table></figure>
+<p>将远程的私有描述文件仓库关添加到本地。这时候再来看 <code>~/.cocoapods/repos</code> 目录下的文件：</p>
+<pre><code>.
+├── PrivateRepo
+└── master
+</code></pre><p>发现本地已经增加了 <code>PrivateRepo</code> 目录，对应的就是远端的 <code>LTVRepo</code> 仓库。</p>
+<p>后续若想移除该私有库，执行下面指令即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod repo remove PrivateRepo</div></pre></td></tr></table></figure>
+<h3 id="创建私有代码库"><a href="#创建私有代码库" class="headerlink" title="创建私有代码库"></a>创建私有代码库</h3><p><img src="http://oubmw34rc.bkt.clouddn.com/blog/pods/5.png" alt=""></p>
+<h3 id="添加代码文件、-podspec文件"><a href="#添加代码文件、-podspec文件" class="headerlink" title="添加代码文件、.podspec文件"></a>添加代码文件、.podspec文件</h3><ol>
+<li><p>新建一个文件夹LTVGeneral，添加要打包到私有库的代码。</p>
+</li>
+<li><p>创建 <code>.podspec</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod spec create LTVGeneral</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>此时文件目录结构如下，其中LTVGeneral下的文件为私有库代码文件</p>
+<pre><code>.
+├── LICENSE
+├── LTVGeneral
+│   ├── LTVDateTool.h
+│   └── LTVDateTool.m
+├── LTVGeneral.podspec
+└── README.md
+</code></pre><p>修改 <code>.podspec</code>  文件内容，按照前面公有库介绍的模板配置即可：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|spec|</span></div><div class="line">  <span class="comment"># 项目名称</span></div><div class="line">  spec.name         = <span class="string">"LTVGeneral"</span>            </div><div class="line">  <span class="comment"># 版本号</span></div><div class="line">  spec.version      = <span class="string">"1.0.0"</span></div><div class="line">  <span class="comment"># 项目简介</span></div><div class="line">  spec.summary      = <span class="string">"A private code library"</span></div><div class="line">  <span class="comment"># 项目主页</span></div><div class="line">  spec.homepage     = <span class="string">"https://coding.net/u/lotheve/p/LTVGeneral"</span></div><div class="line">  <span class="comment"># 开源协议</span></div><div class="line">  spec.license      = <span class="string">"MIT"</span></div><div class="line">  <span class="comment"># 作者</span></div><div class="line">  spec.authors            = &#123; <span class="string">"Lotheve"</span> =&gt; <span class="string">"gaofeng-7171@163.com"</span> &#125;</div><div class="line">  <span class="comment"># 支持的平台及版本信息</span></div><div class="line">  spec.platform     = <span class="symbol">:ios</span>, <span class="string">"8.0"</span></div><div class="line">  <span class="comment"># 代码源地址</span></div><div class="line">  spec.source       = &#123; <span class="symbol">:git</span> =&gt; <span class="string">"git@git.coding.net:lotheve/LTVGeneral.git"</span>, <span class="symbol">:tag</span> =&gt; <span class="string">"<span class="subst">#&#123;spec.version&#125;</span>"</span> &#125;</div><div class="line">  <span class="comment">#spec.source       = &#123; :git =&gt; "https://git.coding.net/lotheve/LTVGeneral.git", :tag =&gt; "#&#123;spec.version&#125;" &#125;</span></div><div class="line">  <span class="comment"># 源文件</span></div><div class="line">  spec.source_files  = <span class="string">"LTVGeneral/*.&#123;h,m&#125;"</span></div><div class="line">  <span class="comment"># 需要链接的系统库</span></div><div class="line">  spec.frameworks = <span class="string">'Foundation'</span>, <span class="string">'UIKit'</span></div><div class="line">  <span class="comment"># 是否需要ARC支持</span></div><div class="line">  spec.requires_arc = <span class="literal">true</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>然后验证仓库配置的正确性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod lib lint</div></pre></td></tr></table></figure>
+<p>这时报了一个警告：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- WARN  | source: Git SSH URLs will NOT work for people behind firewalls configured to only allow HTTP, therefore HTTPS is preferred.</div><div class="line">[!] LTVGeneral did not pass validation, due to 1 warning (but you can use `--allow-warnings` to ignore it).</div></pre></td></tr></table></figure>
+<p>说是source不建议用git协议。其实这里用git协议或者https协议的地址都可以，只是使用前者时，团队其他成员安装私有库依赖还需要先在代码仓库上部署公钥，这有助于进一步控制团队内的“私有”（如果你确定有这必要的话）。若确定使用git协议，指令后面加上 <code>--allow-warnings</code> 参数即可忽略警告。此处我选择https，修改配置：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#spec.source       = &#123; :git =&gt; "git<span class="doctag">@git</span>.coding.net:lotheve/LTVGeneral.git", :tag =&gt; "#&#123;spec.version&#125;" &#125;</span></div><div class="line">spec.source       = &#123; <span class="symbol">:git</span> =&gt; <span class="string">"https://git.coding.net/lotheve/LTVGeneral.git"</span>, <span class="symbol">:tag</span> =&gt; <span class="string">"<span class="subst">#&#123;spec.version&#125;</span>"</span> &#125;</div></pre></td></tr></table></figure>
+<p>再次验证，输出验证通过（LTVGeneral passed validation）。</p>
+<h3 id="推送代码和描述文件"><a href="#推送代码和描述文件" class="headerlink" title="推送代码和描述文件"></a>推送代码和描述文件</h3><p>现在，可以把代码推送到远程了，记得打上版本标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git push</div><div class="line">$ git tag -a 1.0.0 -m <span class="string">'1.0.0版本'</span></div><div class="line">$ git push origin --tags</div></pre></td></tr></table></figure>
+<p>接下来，推送版本描述文件到远程仓库，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pod repo push PrivateRepo LTVGeneral.podspec</div></pre></td></tr></table></figure>
+<p>这个过程经历了如下步骤：</p>
+<ul>
+<li><p>Validating spec</p>
+<p>验证 <code>.podspec</code> 文件</p>
+</li>
+<li><p>Updating the ‘PrivateRepo’ repo </p>
+<p>更新本地版本描述文件仓库</p>
+</li>
+<li><p>Adding the spec to the ‘PrivateRepo’ repo</p>
+<p>添加新的描述文件到本地描述文件仓库中</p>
+</li>
+<li><p>Pushing the ‘PrivateRepo’ repo</p>
+<p>推送本地描述文件仓库的修改到远程</p>
+</li>
+</ul>
+<p>这时候进到本地Pods目录下，查看PrivateRepo的内容如下：</p>
+<pre><code>├── LICENSE
+├── LTVGeneral
+│   └── 1.0.0
+│       └── LTVGeneral.podspec
+└── README.md
+</code></pre><p>可以看到1.0.0版本的LTVGeneral描述文件已经存在了。</p>
+<h3 id="工程安装私有库"><a href="#工程安装私有库" class="headerlink" title="工程安装私有库"></a>工程安装私有库</h3><p>首先search一下私有库看下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ pod search LTVGeneral</div><div class="line">-&gt; LTVGeneral (1.0.0)</div><div class="line">   A private code library</div><div class="line">   pod <span class="string">'LTVGeneral'</span>, <span class="string">'~&gt; 1.0.0'</span></div><div class="line">   - Homepage: https://coding.net/u/lotheve/p/LTVGeneral</div><div class="line">   - Source:   https://git.coding.net/lotheve/LTVGeneral.git</div><div class="line">   - Versions: 1.0.0 [PrivateRepo repo]</div></pre></td></tr></table></figure>
+<p>没问题。</p>
+<p>现在，在先前的测试工程的 <code>Podfile</code> 中添加 <code>pod &#39;LTVGeneral&#39;, &#39;~&gt; 1.0.0&#39;</code> 来准备安装私有库。然后执行 <code>pod install</code> , 可以看到如下报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[!] Unable to find a specification for `LTVGeneral (~&gt; 1.0.0)`</div></pre></td></tr></table></figure>
+<p>这是因为CocoaPods默认从官方的Specs仓库中查找目标库的信息，若要从私有库中查找，需要在 <code>Podfile</code> 中指定源地址。如果是安装私有库的同时，还要安装公有库，那么公有库的版本仓库地址也要显式加上。修改后的 <code>Podfile</code> 文件如下：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">source <span class="string">'https://git.coding.net/lotheve/LTVRepo.git'</span></div><div class="line">source <span class="string">'https://github.com/CocoaPods/Specs.git'</span></div><div class="line"></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'8.0'</span></div><div class="line"></div><div class="line">target <span class="string">'testProject'</span> <span class="keyword">do</span></div><div class="line">pod <span class="string">'LTVMediaPicker'</span>, <span class="string">'~&gt; 1.0.0'</span></div><div class="line">pod <span class="string">'LTVGeneral'</span>, <span class="string">'~&gt; 1.0.0'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>需要注意的是source指定的是版本描述文件的仓库地址，而非代码库的仓库地址。随后再次执行 <code>pod install</code> ，即可安装成功。<code>pod install</code> 经历了如下过程：</p>
+<ol>
+<li>根据 <code>podfile</code> 中指定的source路径拉取版本库到本地</li>
+<li>从拉取到的版本库中查找目标库的 <code>.podspec</code> 文件</li>
+<li>根据查找到的 <code>.podspec</code> 中指定的source路径拉取代码，随后整合到工程中</li>
+</ol>
+<p>现在打开工程，可以看到依赖已经安装了：</p>
+<p><img src="http://oubmw34rc.bkt.clouddn.com/blog/pods/6.png" alt=""></p>
+<h3 id="私有库的更新"><a href="#私有库的更新" class="headerlink" title="私有库的更新"></a>私有库的更新</h3><p>关于私有库的更新，其实和公有库是一样的流程：</p>
+<ol>
+<li>更新代码，修改 <code>.podspec</code> 中的版本号，打上版本标签，推送到远程代码仓库</li>
+<li>执行 <code>pod repo push PrivateRepo LTVGeneral.podspec</code>  发布新版本</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过对公有库制作和私有库制作的实践，相信大家（包括我本人）对CocoaPods的理解更透彻了。实际上对于一些体量较小的工程而言，大多会使用CocoaPods接入一些三方公有库，当然也有不少公司维护内部的私有组件库来实现快速开发。而对于一些大工程而言，则能够充分利用CocoaPods的私有库能力来实现工程的组件化，实现模块之间的解耦。接下来我将对工程组件化进行探索~</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/05/21/AFNetworking刨根问底/" title="AFNetworking刨根问底">AFNetworking刨根问底</a></h2>
+                <p class="excerpt">
+                
+                
+AFNetworking网络框架在iOS开发中的霸主地位已经根深蒂固，本篇将基于3.2.1版本对框架的几个核心模块做一波分析。首先对于框架整体的架构，简单归纳如下：
+
+AFURLSessionManager模块概要AFURLSessionManager是AF最核心的模块，用来创建请求的task实体
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-05-21T15:53:48.000Z" class="post-list__meta--date date">2018-05-21</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2018/05/21/AFNetworking刨根问底/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lotheves'; 
+      
+  var disqus_identifier = '/2018/10/23/实践CocoaPods库的制作/';
+  var disqus_title = '实践CocoaPods库的制作';
+  var disqus_url = 'http://yoursite.com/2018/10/23/实践CocoaPods库的制作/';
+  
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          //dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+          dsq.src = 'https://a.disquscdn.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2018 - 本站使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题,
+        由<a href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-104179898-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?625528118da5bf56aa02dc2a21537069";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-23T06:44:00.617Z</updated>
+  <updated>2018-11-02T02:16:31.601Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,31 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>探索dealloc真谛</title>
+    <link href="http://yoursite.com/2018/11/02/%E6%8E%A2%E7%B4%A2dealloc%E7%9C%9F%E8%B0%9B/"/>
+    <id>http://yoursite.com/2018/11/02/探索dealloc真谛/</id>
+    <published>2018-11-02T02:14:53.000Z</published>
+    <updated>2018-11-02T02:16:31.601Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;动机由来&quot;&gt;&lt;a href=&quot;#动机由来&quot; class=&quot;headerlink&quot; title=&quot;动机由来&quot;&gt;&lt;/a&gt;动机由来&lt;/h2&gt;&lt;p&gt;最近在封装一个 &lt;code&gt;UITextField&lt;/code&gt; 分类的时候遇到了一个问题，大致需求是封装 &lt;code&gt;UI
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://yoursite.com/tags/iOS/"/>
+    
+      <category term="ARC" scheme="http://yoursite.com/tags/ARC/"/>
+    
+  </entry>
+  
+  <entry>
     <title>实践CocoaPods库的制作</title>
     <link href="http://yoursite.com/2018/10/23/%E5%AE%9E%E8%B7%B5CocoaPods%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C/"/>
     <id>http://yoursite.com/2018/10/23/实践CocoaPods库的制作/</id>
     <published>2018-10-23T06:42:38.000Z</published>
-    <updated>2018-10-23T06:44:00.617Z</updated>
+    <updated>2018-10-23T06:51:01.460Z</updated>
     
     <summary type="html">
     
@@ -41,7 +61,7 @@
     <link href="http://yoursite.com/2018/05/21/AFNetworking%E5%88%A8%E6%A0%B9%E9%97%AE%E5%BA%95/"/>
     <id>http://yoursite.com/2018/05/21/AFNetworking刨根问底/</id>
     <published>2018-05-21T15:53:48.000Z</published>
-    <updated>2018-09-26T09:17:42.167Z</updated>
+    <updated>2018-10-23T06:51:01.456Z</updated>
     
     <summary type="html">
     
@@ -58,7 +78,7 @@
     <link href="http://yoursite.com/2017/10/10/WebViewJavascriptBridge%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90/"/>
     <id>http://yoursite.com/2017/10/10/WebViewJavascriptBridge源码剖析/</id>
     <published>2017-10-10T11:25:05.000Z</published>
-    <updated>2018-09-26T09:17:42.168Z</updated>
+    <updated>2018-10-23T06:51:01.457Z</updated>
     
     <summary type="html">
     
@@ -74,7 +94,7 @@
     <link href="http://yoursite.com/2017/09/14/iOS%E5%8E%9F%E7%94%9F%E9%9B%86%E6%88%90easyAR_unity%E5%B7%A5%E7%A8%8B/"/>
     <id>http://yoursite.com/2017/09/14/iOS原生集成easyAR_unity工程/</id>
     <published>2017-09-13T16:42:13.000Z</published>
-    <updated>2018-09-26T09:17:42.168Z</updated>
+    <updated>2018-10-23T06:51:01.457Z</updated>
     
     <summary type="html">
     
@@ -90,7 +110,7 @@
     <link href="http://yoursite.com/2017/08/30/iOS%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E5%85%A8%E5%AE%B6%E6%A1%B6/"/>
     <id>http://yoursite.com/2017/08/30/iOS触摸事件全家桶/</id>
     <published>2017-08-30T07:44:18.000Z</published>
-    <updated>2018-09-26T09:17:42.170Z</updated>
+    <updated>2018-10-23T06:51:01.460Z</updated>
     
     <summary type="html">
     
@@ -107,7 +127,7 @@
     <link href="http://yoursite.com/2017/03/20/iOS%E7%83%AD%E4%BF%AE%E5%A4%8D%E6%8A%80%E6%9C%AF%E5%8F%8AJSPatch%E6%BA%90%E7%A0%81%E6%8E%A2%E7%B4%A2/"/>
     <id>http://yoursite.com/2017/03/20/iOS热修复技术及JSPatch源码探索/</id>
     <published>2017-03-20T06:48:16.000Z</published>
-    <updated>2018-09-26T09:17:42.169Z</updated>
+    <updated>2018-10-23T06:51:01.458Z</updated>
     
     <summary type="html">
     

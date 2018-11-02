@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>探索dealloc真谛 | Lotheve&#39;s</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="探索dealloc真谛 | Lotheve&#39;s">
+    <meta name="twitter:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="探索dealloc真谛 | Lotheve&#39;s">
+    <meta property="og:description" content="火车慢慢停下&lt;br&gt;这又是一个全新的地方">
+
+    
+    <meta name="author" content="Lotheve">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar.jpeg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="Lotheve&#39;s" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/11/02/探索dealloc真谛/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Lotheve&#39;s 的主页"><img src="/images/avatar.jpg" width="80" alt="Lotheve&#39;s logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Lotheve&#39;s">Lotheve&#39;s</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">菩提本无树 明镜亦非台</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">火车慢慢停下<br>这又是一个全新的地方</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/story">时光机</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.cn/onlychacha" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/Lotheve" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-11-02T02:14:53.000Z" class="post-list__meta--date date">2018-11-02</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/ARC/">ARC</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">探索dealloc真谛</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="动机由来"><a href="#动机由来" class="headerlink" title="动机由来"></a>动机由来</h2><p>最近在封装一个 <code>UITextField</code> 分类的时候遇到了一个问题，大致需求是封装 <code>UITextField</code> 的若干功能，方便业务方这样使用：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 限制输入长度</span></div><div class="line">[_tf ltv_limitLength:<span class="number">5</span>];</div><div class="line"><span class="comment">// 限制输入字符</span></div><div class="line">[_tf ltv_limitContent:[<span class="built_in">NSCharacterSet</span> characterSetWithCharactersInString:<span class="string">@"-+*"</span>]];</div><div class="line"><span class="comment">// 匹配输入条件触发action</span></div><div class="line">[_tf ltv_matchCondition:^<span class="built_in">BOOL</span>(<span class="built_in">NSString</span> *text) &#123;</div><div class="line">    <span class="keyword">return</span> [text isEqualToString:<span class="string">@"asd"</span>];</div><div class="line">&#125; action:^(<span class="built_in">NSString</span> *text) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"matched asd"</span>);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>基本实现思路是借助一个全局单例，作为UITextField内容变化时通知的观察者，其中object参数指定了需要监听的 <code>UITextField</code> 实例，这样一来，当输入内容发生变化，就能触发对应 <code>UITextField</code> 实例相关的逻辑处理：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:[<span class="keyword">self</span> manager] selector:<span class="keyword">@selector</span>(textfieldDidChangedTextNotification:) name:<span class="built_in">UITextFieldTextDidChangeNotification</span> object:target];</div></pre></td></tr></table></figure>
+<p>这种思路有一个问题需要处理，就是当 <code>UITextField</code> 实例释放的时候，需要移除对应的通知。也就是说，我需要监听   <code>UITextField</code> 实例的释放。由于是系统控件，没法直接复写 <code>dealloc</code> 方法，因此需要借助一些运行时魔法。当时主要有两种思路：</p>
+<ol>
+<li><p>借助hook，替换 <code>dealloc</code> 方法。但是 <code>dealloc</code> 是NSObjec的方法，若要hook该方法，会对所有的cocoa实例产生影响，而我的实际目标只有UITextField，显然这种方式不太妙。而且事实上，ARC下是无法直接hook <code>dealloc</code> 方法的（通过运行时可以实现），会产生编译报错：<code>ARC forbids use of &#39;dealloc&#39; in a @selector</code>。因此，这种方案Pass！</p>
+</li>
+<li><p>借助AssociatedObject。我们知道，ARC下，一个实例释放后，同时会解除对其实例变量的强引用。这样一来，我就可以通过AssociatedObject动态给UITextField实例绑定一个自定义的辅助对象，并且监听该辅助对象的 <code>dealloc</code> 方法调用。因为按照我的理论，当UITextField实例被释放后，辅助对象唯一的强引用被解除，必然将触发 <code>dealloc</code> 的调用。这样一来，我就能够间接监听宿主UITextField实例的释放了。</p>
+<p>然而，想法很美好，现实略骨感。我确实能够监听UITextField实例的释放了，然而似乎忘记了我真正的意图——真正要做的是在UITextField实例被释放之前拿到实例本身，调用方法移除对应的通知： </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] removeObserver:[<span class="keyword">self</span> manager] name:<span class="built_in">UITextFieldTextDidChangeNotification</span> object:target]</div></pre></td></tr></table></figure>
+<p>我忽略了一个很重要的问题：当实例变量的 <code>dealloc</code> 方法调用的时候，其宿主对象已经被释放了，也就是说在实例变量的 <code>dealloc</code> 方法中已经拿不到宿主对象了。因此我还是拿不到UITextField实例！！Pass！！</p>
+</li>
+</ol>
+<p>这个问题似乎没有很好的解决方案，最终换了一种思路：不再为每个UITextField实例绑定观察者监听通知，而是注册一个全局的通知：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:[<span class="keyword">self</span> manager] selector:<span class="keyword">@selector</span>(textfieldDidChangedTextNotification:) name:<span class="built_in">UITextFieldTextDidChangeNotification</span> object:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<p>在监听通知的回调方法中判断触发通知的UITextField实例是否是需要处理的实例，仅在命中的时候进行逻辑处理。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)textfieldDidChangedTextNotification:(<span class="built_in">NSNotification</span> *)notification</div><div class="line">&#123;</div><div class="line">    <span class="built_in">UITextField</span> *textField = (<span class="built_in">UITextField</span> *)notification.object;</div><div class="line">    <span class="keyword">if</span> ([_targetTable containsObject:textField]) &#123;</div><div class="line">        [textField.operations enumerateObjectsUsingBlock:^(LTVTFOperation * _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">            obj.action();</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方案虽然有个显而易见的缺陷（会监听所有的UITextField实例），但是个人认为比hook dealloc方法要好，首先受众对象只限定在UITextField，其次多余的逻辑处理较为简单，不会产生较大的性能影响。另外，想了想IQKeyBoard也是全局监听UITextField，问题应该不大吧~ 如果你有更好的方案，欢迎来撩~</p>
+<p>虽然眼前问题是解决了，但是此时内心已经暗戳戳萌芽了一个更大的困惑：<strong>dealloc方法到底干了啥？</strong></p>
+<h2 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h2><p>首先，我们都知道当一个对象的引用计数为0的时候，就会调用 <code>dealloc</code> 方法进行析构。在MRC时代，内存需要手动管理，解除对象引用需要手动调 <code>release</code> ，通常也会这样写 <code>dealloc</code> ：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)dealloc &#123;</div><div class="line">    <span class="keyword">self</span>.instance1 = <span class="literal">nil</span>;</div><div class="line">    <span class="keyword">self</span>.instance2 = <span class="literal">nil</span>;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="comment">// 非cocoa对象内存的释放，如CF对象</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">    [<span class="keyword">super</span> dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>移除对相关实例的引用</li>
+<li>非cocoa对象的释放</li>
+<li>调用 <code>[super dealloc]</code> 来释放父类中的对象</li>
+</ul>
+<p>而到了ARC时代，<code>dealloc</code> 基本变成了这样：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)dealloc &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="comment">// 非cocoa对象内存的释放，如CF对象</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>除了非cocoa对象还需要手动释放，实例变量释放和 <code>[super dealloc]</code> 都不见了身影。这也就是我们要探索的两个ARC下 <code>dealloc</code> 的问题：</p>
+<ol>
+<li>对象的实例变量如何释放？</li>
+<li>父类中的对象析构如何实现？</li>
+</ol>
+<p>##初探dealloc的调用</p>
+<p>当探索一个方法无从下手时，最好的方法就是查看调用栈，说不定就能从中窥见一二。测试代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父类Animal</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Animal</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) Skill *skill;</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Animal</span></span></div><div class="line">- (<span class="keyword">void</span>)dealloc&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="comment">// 子类Dog</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Dog</span> : <span class="title">Animal</span></span></div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></div><div class="line">- (<span class="keyword">void</span>)dealloc&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="comment">// 实例变量类型Skill</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Skill</span> : <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Skill</span></span></div><div class="line">- (<span class="keyword">void</span>)dealloc&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line">    </div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    Dog *dog = [Dog new];</div><div class="line">    dog.skill = [Skill new];</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行工程，由于dog实例很快过了作用域，因此会触发实例的释放。打印的日志如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">2018</span><span class="number">-11</span><span class="number">-01</span> <span class="number">17</span>:<span class="number">09</span>:<span class="number">43.986073</span>+<span class="number">0800</span> DeallocExporeDemo[<span class="number">5674</span>:<span class="number">1072191</span>] -[Dog dealloc]</div><div class="line"><span class="number">2018</span><span class="number">-11</span><span class="number">-01</span> <span class="number">17</span>:<span class="number">09</span>:<span class="number">43.986302</span>+<span class="number">0800</span> DeallocExporeDemo[<span class="number">5674</span>:<span class="number">1072191</span>] -[Animal dealloc]</div><div class="line"><span class="number">2018</span><span class="number">-11</span><span class="number">-01</span> <span class="number">17</span>:<span class="number">09</span>:<span class="number">45.751398</span>+<span class="number">0800</span> DeallocExporeDemo[<span class="number">5674</span>:<span class="number">1072191</span>] -[Skill dealloc]</div></pre></td></tr></table></figure>
+<p>可见虽然dealloc方法中尽管没调用 <code>[super dealloc]</code> ，也没有手动释放对实例变量skill的引用，父类Animal的 <code>dealloc</code> 和实例变量skill的 <code>dealloc</code> 方法最终都调用了。</p>
+<p>由于触发对象调用dealloc的直接原因是对象引用计数为0，而实例变量实际上是被 <code>dog.skill</code> 这个变量所持有，因此可以通过 <strong>Watchpoint</strong> 来监听skill变量的内存变化。在main函数的 <code>return 0;</code> 语句上打个断点，然后通过 <code>watchpoint set variable dog-&gt;_skill</code> 设置监听：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1510019-b50deb017521642b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>继续执行，随后就能监听到skill内存的变化：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1510019-e8badf56219849a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>可见dog的skill实例变量的内存地址从 0x00000001007661b0 变成了 0x0000000000000000，也就是说这个时间节点skill对象被释放了（其实严格来说这么说是不正确的，此时堆上的skill对象并没有被释放，我们监听到的只是栈上的skill变量值被清掉了，因此也就无法再通过变量访问该对象了）。</p>
+<p>此时调用栈如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1510019-0c55a056fda29cc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>可见子类的 <code>dealloc</code> 调用之后，父类的跟着调用。随后通过一系列运行时方法，最终在一个名为 <code>.cxx_destruct</code> 的方法中调用了 <code>objc_storeStrong</code> 来完成释放工作。另外可以看到这个 <code>.cxx_destruct</code> 是Animal的方法，怎么来的呢？运行时都做了些什么事？带着这些疑问继续往下看。</p>
+<p>##NSObject的dealloc实现</p>
+<p>是时候来看一下runtime中相关的实现了，runtime源码可以在 <a href="https://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">Source Browser</a> 下载。</p>
+<p>经过定位和调用追踪，发现经过了如下函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dealloc -&gt; _objc_rootDealloc -&gt; object_dispose -&gt; objc_destructInstance</div></pre></td></tr></table></figure>
+<p>前面都是些简单的判断和跳转，重要的是 <code>objc_destructInstance</code> 函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">objc_destructInstance</span><span class="params">(id obj)</span> </span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">if</span> (obj) &#123;</div><div class="line">        <span class="comment">// Read all of the flags at once for performance.</span></div><div class="line">        <span class="keyword">bool</span> cxx = obj-&gt;hasCxxDtor();</div><div class="line">        <span class="keyword">bool</span> assoc = obj-&gt;hasAssociatedObjects();</div><div class="line"></div><div class="line">        <span class="comment">// This order is important.</span></div><div class="line">        <span class="keyword">if</span> (cxx) object_cxxDestruct(obj);</div><div class="line">        <span class="keyword">if</span> (assoc) _object_remove_assocations(obj);</div><div class="line">        obj-&gt;clearDeallocating();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> obj;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到这个函数主要做了3件事：</p>
+<ul>
+<li><p>object_cxxDestruct</p>
+<p>这个函数有点眼熟，跟刚才调用栈中看到的 <code>.cxx_destruct</code> 长得很像，猜测实例变量释放以及调用父类的<code>dealloc</code>都是在这里面进行的。</p>
+</li>
+<li><p>_object_remove_assocations</p>
+<p>顾名思义，用来释放动态绑定的对象。</p>
+</li>
+<li><p>clearDeallocating</p>
+<p>该函数实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">void</span> objc_object::clearDeallocating()</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (slowpath(!isa.nonpointer)) &#123;</div><div class="line">        <span class="comment">// Slow path for raw pointer isa.</span></div><div class="line">        sidetable_clearDeallocating();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (slowpath(isa.weakly_referenced  ||  isa.has_sidetable_rc)) &#123;</div><div class="line">        <span class="comment">// Slow path for non-pointer isa with weak refs and/or side table data.</span></div><div class="line">        clearDeallocating_slow();</div><div class="line">    &#125;</div><div class="line">    assert(!sidetable_present());</div><div class="line">&#125;</div><div class="line"></div><div class="line">NEVER_INLINE <span class="keyword">void</span> objc_object::clearDeallocating_slow()</div><div class="line">&#123;</div><div class="line">    assert(isa.nonpointer  &amp;&amp;  (isa.weakly_referenced || isa.has_sidetable_rc));</div><div class="line">    SideTable&amp; table = SideTables()[<span class="keyword">this</span>];</div><div class="line">    table.lock();</div><div class="line">    <span class="keyword">if</span> (isa.weakly_referenced) &#123;</div><div class="line">        weak_clear_no_lock(&amp;table.weak_table, (id)<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (isa.has_sidetable_rc) &#123;</div><div class="line">        table.refcnts.erase(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">    table.unlock();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到做了两件事：</p>
+<ol>
+<li>将对象弱引用表清空，即将弱引用该对象的指针置为nil</li>
+<li>清空引用计数表（当一个对象的引用计数值过大（超过255）时，引用计数会存储在一个叫 <code>SideTable</code> 的属性中，此时isa的 <code>has_sidetable_rc</code> 值为1）</li>
+</ol>
+</li>
+</ul>
+<p>接下来，要探索的就是 <code>object_cxxDestruct</code> 函数了，实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">object_cxxDestruct</span><span class="params">(id obj)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">if</span> (!obj) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span> (obj-&gt;isTaggedPointer()) <span class="keyword">return</span>;</div><div class="line">    object_cxxDestructFromClass(obj, obj-&gt;ISA());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>object_cxxDestructFromClass</code> 这个函数之前在调用栈里看到过，再往里看：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">object_cxxDestructFromClass</span><span class="params">(id obj, Class cls)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">void</span> (*dtor)(id);</div><div class="line"></div><div class="line">    <span class="comment">// Call cls's dtor first, then superclasses's dtors.</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> ( ; cls; cls = cls-&gt;superclass) &#123;</div><div class="line">        <span class="keyword">if</span> (!cls-&gt;hasCxxDtor()) <span class="keyword">return</span>; </div><div class="line">        dtor = (<span class="keyword">void</span>(*)(id))</div><div class="line">            lookupMethodInClassAndLoadCache(cls, SEL_cxx_destruct);</div><div class="line">        <span class="keyword">if</span> (dtor != (<span class="keyword">void</span>(*)(id))_objc_msgForward_impcache) &#123;</div><div class="line">            <span class="keyword">if</span> (PrintCxxCtors) &#123;</div><div class="line">                _objc_inform(<span class="string">"CXX: calling C++ destructors for class %s"</span>, </div><div class="line">                             cls-&gt;nameForLogging());</div><div class="line">            &#125;</div><div class="line">            (*dtor)(obj);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过分析，最终 <code>(*dtor)(obj);</code> 执行的其实是 <code>SEL_cxx_destruct</code> 这个SEL标记的函数，通过全局搜索 <code>SEL_cxx_destruct</code> ，不难发现该SEL对应的正是之前看到的 .cxx_destruct 方法，也就是说，最终是 <code>.cxx_destruct</code> 方法被调用了。</p>
+<h2 id="探索-cxx-destruct方法"><a href="#探索-cxx-destruct方法" class="headerlink" title="探索.cxx_destruct方法"></a>探索.cxx_destruct方法</h2><p>之前在调用栈中看到该方法是Animal类中的方法，而我们并没有申明该方法，也没有动态插入该方法的相关代码。并且这个方法是析构对象相关的，具有很强的通用性，那么猜测是在编译的时候由前端编译器（clang）自动插入的。</p>
+<p>我们可以通过 <a href="https://github.com/delebedev/DLIntrospection" target="_blank" rel="external">DLIntrospection</a> 来查看Animal类中是否真的存在这个方法，该工具可以方便在lldb中打印类中所有的实例变量、方法、对象遵守的协议等信息，是一个NSObject的分类文件，直接拉到工程中即可使用。</p>
+<p>在main函数中打个断点，然后在lldb中打印Animal类的实例方法：</p>
+<pre><code>po [[Animal class] instanceMethods]
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/1510019-dca33262fc9d1124.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>可以看到确实是有 <code>.css_destruct</code> 这个方法。随后，通过查阅相关资料，验证了我之前的猜测。在clang源码里，找到了相关的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> CodeGenModule::EmitObjCIvarInitializations(ObjCImplementationDecl *D) &#123;</div><div class="line">    IdentifierInfo *II = &amp;getContext().Idents.get(<span class="string">".cxx_destruct"</span>);</div><div class="line">    Selector cxxSelector = getContext().Selectors.getSelector(<span class="number">0</span>, &amp;II);</div><div class="line">    ObjCMethodDecl *DTORMethod =</div><div class="line">    ObjCMethodDecl::Create(getContext(), D-&gt;getLocation(), D-&gt;getLocation(),</div><div class="line">                          cxxSelector, getContext().VoidTy, <span class="literal">nullptr</span>, D,</div><div class="line">                          /isInstance=/<span class="literal">true</span>, /isVariadic=/<span class="literal">false</span>,</div><div class="line">                       /isPropertyAccessor=/<span class="literal">true</span>, /isImplicitlyDeclared=/<span class="literal">true</span>,</div><div class="line">                          /isDefined=/<span class="literal">false</span>, ObjCMethodDecl::Required);</div><div class="line">    D-&gt;addInstanceMethod(DTORMethod);</div><div class="line">    CodeGenFunction(*<span class="keyword">this</span>).GenerateObjCCtorDtorMethod(D, DTORMethod, <span class="literal">false</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在clang的<a href="https://clang.llvm.org/doxygen/CodeGenModule_8cpp_source.html" target="_blank" rel="external">CodeGenModule模块</a>中看到了上面代码（只摘录了相关代码），经过分析大概是clang通过CodeGen为具体类插入了 <code>.cxx_destruct</code> 方法。 <code>GenerateObjCCtorDtorMethod</code>  函数实现在 <a href="https://clang.llvm.org/doxygen/CGObjC_8cpp_source.html" target="_blank" rel="external">CGObjC.cpp</a> 文件中，其中声明了 <code>.cxx_destruct</code> 的具体实现。最终对象释放时，会调用到 <code>emitCXXDestructMethod</code> 函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">emitCXXDestructMethod</span><span class="params">(CodeGenFunction &amp;CGF,</span></span></div><div class="line"><span class="function"><span class="params">                                  ObjCImplementationDecl *impl)</span> </span>&#123;</div><div class="line">  CodeGenFunction::<span class="function">RunCleanupsScope <span class="title">scope</span><span class="params">(CGF)</span></span>;</div><div class="line">  llvm::Value *self = CGF.LoadObjCSelf();</div><div class="line">  <span class="keyword">const</span> ObjCInterfaceDecl *iface = impl-&gt;getClassInterface();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> ObjCIvarDecl *ivar = iface-&gt;all_declared_ivar_begin();</div><div class="line">       ivar; ivar = ivar-&gt;getNextIvar()) &#123;</div><div class="line">    QualType type = ivar-&gt;getType();</div><div class="line">    <span class="comment">// Check whether the ivar is a destructible type.</span></div><div class="line">    QualType::DestructionKind dtorKind = type.isDestructedType();</div><div class="line">    <span class="keyword">if</span> (!dtorKind) <span class="keyword">continue</span>;</div><div class="line">    CodeGenFunction::Destroyer *destroyer = <span class="literal">nullptr</span>;</div><div class="line">    <span class="comment">// Use a call to objc_storeStrong to destroy strong ivars, for the</span></div><div class="line">    <span class="comment">// general benefit of the tools.</span></div><div class="line">    <span class="keyword">if</span> (dtorKind == QualType::DK_objc_strong_lifetime) &#123;</div><div class="line">      destroyer = destroyARCStrongWithStore;</div><div class="line">    <span class="comment">// Otherwise use the default for the destruction kind.</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      destroyer = CGF.getDestroyer(dtorKind);</div><div class="line">    &#125;</div><div class="line">    CleanupKind cleanupKind = CGF.getCleanupKind(dtorKind);</div><div class="line">    CGF.EHStack.pushCleanup&lt;DestroyIvar&gt;(cleanupKind, self, ivar, destroyer,</div><div class="line">                                         cleanupKind &amp; EHCleanup);</div><div class="line">  &#125;</div><div class="line">  assert(scope.requiresCleanups() &amp;&amp; <span class="string">"nothing to do in .cxx_destruct?"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>经过分析，该函数做的事情是：遍历所有实例变量，调用 <code>destroyARCStrongWithStore</code> 。而 <code>destroyARCStrongWithStore</code> 最终调用的就是之前调用栈中看到的 <code>objc_storeStrong</code> 函数，可以在runtime源码中看到其实现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">objc_storeStrong</span><span class="params">(id *location, id obj)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    id prev = *location;</div><div class="line">    <span class="keyword">if</span> (obj == prev) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    objc_retain(obj);</div><div class="line">    *location = obj;</div><div class="line">    objc_release(prev);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该函数作用是将obj对象赋值给location变量，因此只要执行 <code>objc_storeStrong(&amp;ivar, null)</code> 就能释放ivar实例变量。至此，<code>dealloc</code> 方法如何释放实例变量这个问题就探索完毕了。</p>
+<p>至于如何调用 <code>[super dealloc]</code> ，在clang源码中同样能找到猫腻。同样在 <a href="https://clang.llvm.org/doxygen/CGObjC_8cpp_source.html" target="_blank" rel="external">CGObjC.cpp</a> 文件中，存在如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> CodeGenFunction::StartObjCMethod(<span class="keyword">const</span> ObjCMethodDecl *OMD,</div><div class="line">                                      <span class="keyword">const</span> ObjCContainerDecl *CD) &#123;</div><div class="line">  <span class="comment">// In ARC, certain methods get an extra cleanup.</span></div><div class="line">  <span class="keyword">if</span> (CGM.getLangOpts().ObjCAutoRefCount &amp;&amp;</div><div class="line">      OMD-&gt;isInstanceMethod() &amp;&amp;</div><div class="line">      OMD-&gt;getSelector().isUnarySelector()) &#123;</div><div class="line">    <span class="keyword">const</span> IdentifierInfo *ident =</div><div class="line">      OMD-&gt;getSelector().getIdentifierInfoForSlot(<span class="number">0</span>);</div><div class="line">    <span class="keyword">if</span> (ident-&gt;isStr(<span class="string">"dealloc"</span>))</div><div class="line">      EHStack.pushCleanup&lt;FinishARCDealloc&gt;(getARCCleanupKind());</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析可知在 <code>dealloc</code> 方法中插入了代码，相关代码在 <code>FinishARCDealloc</code> 结构中定义：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">namespace</span> &#123;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FinishARCDealloc</span> <span class="title">final</span> :</span> EHScopeStack::Cleanup &#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Emit</span><span class="params">(CodeGenFunction &amp;CGF, Flags flags)</span> override </span>&#123;</div><div class="line">    <span class="keyword">const</span> ObjCMethodDecl *method = cast&lt;ObjCMethodDecl&gt;(CGF.CurCodeDecl);</div><div class="line"></div><div class="line">    <span class="keyword">const</span> ObjCImplDecl *impl = cast&lt;ObjCImplDecl&gt;(method-&gt;getDeclContext());</div><div class="line">    <span class="keyword">const</span> ObjCInterfaceDecl *iface = impl-&gt;getClassInterface();</div><div class="line">    <span class="keyword">if</span> (!iface-&gt;getSuperClass()) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">    <span class="keyword">bool</span> isCategory = isa&lt;ObjCCategoryImplDecl&gt;(impl);</div><div class="line"></div><div class="line">    <span class="comment">// Call [super dealloc] if we have a superclass.</span></div><div class="line">    llvm::Value *self = CGF.LoadObjCSelf();</div><div class="line"></div><div class="line">    CallArgList args;</div><div class="line">    CGF.CGM.getObjCRuntime().GenerateMessageSendSuper(CGF, ReturnValueSlot(),</div><div class="line">                                                      CGF.getContext().VoidTy,</div><div class="line">                                                      method-&gt;getSelector(),</div><div class="line">                                                      iface,</div><div class="line">                                                      isCategory,</div><div class="line">                                                      self,</div><div class="line">                                                      <span class="comment">/*is class msg*/</span> <span class="literal">false</span>,</div><div class="line">                                                      args,</div><div class="line">                                                      method);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>大致意思就是调用父类的 <code>dealloc</code> 方法。</p>
+<h2 id="拨云见日"><a href="#拨云见日" class="headerlink" title="拨云见日"></a>拨云见日</h2><p>通过上面的探索分析，基本搞清楚了ARC下 <code>dealloc</code> 是怎么实现自动释放实例变量以及调用父类 <code>dealloc</code> 方法的。这一切要归功于clang以及运行时库，在前端编译过程中CodeGen插入了相关代码，结合运行时完成释放动作。对于ARC下 <code>dealloc</code> 实现原理的摸索就此告终。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/10/23/实践CocoaPods库的制作/" title="实践CocoaPods库的制作">实践CocoaPods库的制作</a></h2>
+                <p class="excerpt">
+                
+                
+本篇内容基于 CocoaPods V1.6.0 实践公有库及私有库的制作
+
+前言作为一名iOSer，我们知道CocoaPods的作用是帮助我们管理和维护代码仓库。在说具体的如何制作Pod仓库之前，需要先来了解一下Pods是如何从远端拉取代码的。
+1~/.cocoapods/repos
+ 安装了Co
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-10-23T06:42:38.000Z" class="post-list__meta--date date">2018-10-23</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/iOS/">iOS</a>
+</span><a class="btn-border-small" href="/2018/10/23/实践CocoaPods库的制作/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'lotheves'; 
+      
+  var disqus_identifier = '/2018/11/02/探索dealloc真谛/';
+  var disqus_title = '探索dealloc真谛';
+  var disqus_url = 'http://yoursite.com/2018/11/02/探索dealloc真谛/';
+  
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          //dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+          dsq.src = 'https://a.disquscdn.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2018 - 本站使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题,
+        由<a href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-104179898-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?625528118da5bf56aa02dc2a21537069";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>
